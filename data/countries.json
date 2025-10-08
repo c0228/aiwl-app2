@@ -1,0 +1,27 @@
+{
+  "USA":{
+	  "tel_index":"+1",
+	  "states":["Alabama","Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+		"Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", 
+		"New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", 
+		"South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"],
+	   "visa_types":["F-1 Student","F-1 OPT (Optional Practical Training)","F-1 STEM OPT Extension","H-1B Work Visa","Green Card / Permanent Resident"]
+		},
+  "Canada":{
+			"tel_index":"+1",
+			"states": ["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Ontario", "Prince Edward Island", "Quebec", 
+				"Saskatchewan"],
+			"visa_types":["Study Permit","Post-Graduation Work Permit (PGWP)","Express Entry / PR"]
+		},
+  "UK": {
+			"tel_index":"+44",
+			"states": ["England","Scotland","Wales","Northern Ireland"],
+			"visa_types":["Tier 4 Student", "Graduate Route","Graduate Route (Post-Study Work)","Skilled Worker Visa"]
+		},
+  "Australia":{
+			"tel_index":"+61",
+			"states": ["New South Wales (NSW)", "Victoria (VIC)", "Queensland (QLD)", "South Australia (SA)", "Western Australia (WA)", "Tasmania (TAS)", 
+			"Australian Capital Territory (ACT)", "Northern Territory (NT)"],
+			"visa_types":["Student (Subclass 500)","Temporary Graduate (Subclass 485)","Skilled Independent (Subclass 189)"]
+		}
+}

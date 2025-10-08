@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule get/countries/list src/controllers/module.user.accounts.info.php?action=COUNTRIES_LIST [QSA]
+RewriteRule get/([^/]+)/data src/controllers/module.user.accounts.info.php?action=STATES_LIST&country=$1 [QSA]
+RewriteRule auth/user/register src/controllers/module.user.accounts.info.php?action=CREATE_USER_ACCOUNT [QSA]
+
