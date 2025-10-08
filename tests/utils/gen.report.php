@@ -20,13 +20,17 @@
      if (!empty($data["testCases"]) && is_array($data["testCases"])) {
         
         foreach ($data["testCases"] as $tc) {
+             $index = $this->testCaseIndex;
+             $statusBgColor = ($tc["status"]=='PASSED')?'bg-success':'bg-danger';
              $testCaseData .= '<div class="list-group mb-2">
-                <div id="test-case-'.$this->testCaseIndex.'" class="list-group-item header" data-bs-toggle="collapse" 
-                    data-bs-target="#test-case-'.$testCaseIndex.'-toggle" 
-                    onClick="javascript:toggleTestCase(\'test-id-'.$testCaseIndex.'\')">
-                    <div><b>TEST CASE #'.$testCaseIndex.': '.$tc["title"].'</b></div>
+                <div id="test-case-'.$index.'" class="list-group-item header" data-bs-toggle="collapse" 
+                    data-bs-target="#test-case-'.$index.'-toggle" 
+                    onClick="javascript:toggleTestCase(\'test-id-'.$index.'\')">
+                    <div><b>TEST CASE #'.$index.': '.$tc["title"].'</b>
+                    <span class="float-end badge '.$statusBgColor.'"><b>'.$tc["status"].'</b></span>
+                    </div>
                 </div>
-                <div id="test-case-'.$this->testCaseIndex.'-toggle" class="list-group-item collapse">
+                <div id="test-case-'.$index.'-toggle" class="list-group-item collapse">
                     <div class="row">
                         <div class="col-md-12"><b>Description:</b> '.$tc["description"].'</div>
                         <div class="col-md-12"><b>URL:</b> '.$tc["url"].' <span class="badge bg-success">'.$tc["method"].'</span> </div>
@@ -115,7 +119,7 @@
      file_put_contents($this->reportFile, $html);
     }
  }
-
+/*
  $data1 = array();
  $data1["title"] = "TEST Title 1";
  $data1["url"] = "TEST URL 1";
@@ -166,5 +170,5 @@ $generateReport->apiTestTitle([
             "comments"=>""
         ]
     ]
-]);
+]); */
 ?>

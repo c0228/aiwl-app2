@@ -9,5 +9,24 @@ $API_COUNTRIES_LIST = [
 ];
 
 $apiResponse = callApi($API_PREFIX.$API_COUNTRIES_LIST["url"], $API_COUNTRIES_LIST["method"]);
-echo json_decode($apiResponse);
+
+$generateReport = new GenerateReport("new-gen-report.html");
+ $generateReport->apiTestTitle([
+    "title" => "Get List of Countries",
+    "url" => $API_COUNTRIES_LIST["url"],
+    "method" => $API_COUNTRIES_LIST["method"],
+    "testCases" =>[
+        [
+            "title"=>"Test the response is providing Countries List or not",
+            "description"=>"We are hitting API and testing  the response is providing the countries list or not",
+            "url"=>$API_COUNTRIES_LIST["url"],
+            "method"=>$API_COUNTRIES_LIST["method"],
+            "inputRequestBody"=>"-",
+            "apiResponse"=>json_encode($apiResponse),
+            "testResult"=>"",
+            "status" => "PASSED",
+            "comments"=>""
+        ]
+    ]
+]);
 ?>

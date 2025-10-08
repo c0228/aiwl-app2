@@ -17,7 +17,7 @@ function toggleTestCase(id){ $("#"+id+"-toggle").collapse("toggle"); }
 <div align="center"><h4><b>API TEST RESULTS</b></h4></div>
 <div class="mt-4">
 <h4>
-<b>1. Get Countries List <span class="badge bg-primary">get/countries/list</span></b>
+<b>1. Get List of Countries <span class="badge bg-primary">get/countries/list</span></b>
 <span class="float-end badge bg-success">GET</span>
 <hr/>
 </h4>
@@ -25,11 +25,13 @@ function toggleTestCase(id){ $("#"+id+"-toggle").collapse("toggle"); }
 <div id="test-case-1" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-1-toggle"
 onClick="javascript:toggleTestCase('test-id-1')">
-<div><b>TEST CASE #1: Get list of Countries by using API</b></div>
+<div><b>TEST CASE #1: Test the response is providing Countries List or not</b>
+<span class="float-end badge bg-success"><b>PASSED</b></span>
+</div>
 </div>
 <div id="test-case-1-toggle" class="list-group-item collapse">
 <div class="row">
-<div class="col-md-12"><b>Description:</b> Get list of Countries</div>
+<div class="col-md-12"><b>Description:</b> We are hitting API and testing  the response is providing the countries list or not</div>
 <div class="col-md-12"><b>URL:</b> get/countries/list <span class="badge bg-success">GET</span> </div>
 </div>
 <div class="row">
