@@ -9,5 +9,5 @@ $API_COUNTRIES_LIST = [
 ];
 
 $apiResponse = callApi($API_PREFIX.$API_COUNTRIES_LIST["url"], $API_COUNTRIES_LIST["method"]);
-
+echo json_decode($apiResponse);
 ?>
