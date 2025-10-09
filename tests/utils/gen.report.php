@@ -25,9 +25,12 @@
              $testCaseData .= '<div class="list-group mb-2">
                 <div id="test-case-'.$index.'" class="list-group-item header" data-bs-toggle="collapse" 
                     data-bs-target="#test-case-'.$index.'-toggle" 
-                    onClick="javascript:toggleTestCase(\'test-id-'.$index.'\')">
+                    onClick="javascript:toggleTestCase('.$index.')">
                     <div><b>TEST CASE #'.$index.': '.$tc["title"].'</b>
-                    <span class="float-end badge '.$statusBgColor.'"><b>'.$tc["status"].'</b></span>
+                    <span class="float-end">
+                    <span class="badge '.$statusBgColor.'"><b>'.$tc["status"].'</b></span>
+                    <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+                    </span>
                     </div>
                 </div>
                 <div id="test-case-'.$index.'-toggle" class="list-group-item collapse">
@@ -98,6 +101,7 @@
             <html lang="en">
             <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -105,7 +109,10 @@
                 .header { background-color: #eee;cursor:pointer; }
             </style>
             <script>
-            function toggleTestCase(id){ $("#"+id+"-toggle").collapse("toggle"); }
+            function toggleTestCase(index){ 
+                $("#test-case-"+index+"-toggle").collapse("toggle");
+                $("#test-case-"+index).find("i").toggleClass("fa-angle-double-up fa-angle-double-down"); 
+            }
             </script>
             </head>
             <body>
