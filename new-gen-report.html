@@ -38,7 +38,7 @@ onClick="javascript:toggleTestCase(1)">
 </div>
 <div id="test-case-1-toggle" class="list-group-item collapse">
 <div class="row">
-<div class="col-md-12"><b>Description:</b> We are hitting API and testing  the response is providing the countries list or not</div>
+<div class="col-md-12"><b>Description:</b> We are hitting API and testing whether the response provides the list of countries.</div>
 <div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/get/countries/list <span class="badge bg-success">GET</span> </div>
 </div>
 <div class="row">
@@ -71,6 +71,586 @@ onClick="javascript:toggleTestCase(1)">
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="mt-4">
+<h4>
+<b>2. Get List of States per Country <span class="badge bg-primary">get/{country}/data</span></b>
+<span class="float-end badge bg-success">GET</span>
+<hr/>
+</h4>
+</div><div class="list-group mb-2">
+<div id="test-case-2" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-2-toggle"
+onClick="javascript:toggleTestCase(2)">
+<div><b>TEST CASE #2: Test States List for Country from URL: get/USA/data</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-2-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> Testing whether the API returns a valid list of states for the given country.</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/get/USA/data <span class="badge bg-success">GET</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+-
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"tel_index":"+1","states":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],"visa_types":["F-1 Student","F-1 OPT (Optional Practical Training)","F-1 STEM OPT Extension","H-1B Work Visa","Green Card \/ Permanent Resident"]}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-3" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-3-toggle"
+onClick="javascript:toggleTestCase(3)">
+<div><b>TEST CASE #3: Test States List for Country from URL: get/Canada/data</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-3-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> Testing whether the API returns a valid list of states for the given country.</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/get/Canada/data <span class="badge bg-success">GET</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+-
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"tel_index":"+1","states":["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Ontario","Prince Edward Island","Quebec","Saskatchewan"],"visa_types":["Study Permit","Post-Graduation Work Permit (PGWP)","Express Entry \/ PR"]}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-4" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-4-toggle"
+onClick="javascript:toggleTestCase(4)">
+<div><b>TEST CASE #4: Test States List for Country from URL: get/UK/data</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-4-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> Testing whether the API returns a valid list of states for the given country.</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/get/UK/data <span class="badge bg-success">GET</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+-
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"tel_index":"+44","states":["England","Scotland","Wales","Northern Ireland"],"visa_types":["Tier 4 Student","Graduate Route","Graduate Route (Post-Study Work)","Skilled Worker Visa"]}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-5" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-5-toggle"
+onClick="javascript:toggleTestCase(5)">
+<div><b>TEST CASE #5: Test States List for Country from URL: get/Australia/data</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-5-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> Testing whether the API returns a valid list of states for the given country.</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/get/Australia/data <span class="badge bg-success">GET</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+-
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"tel_index":"+61","states":["New South Wales (NSW)","Victoria (VIC)","Queensland (QLD)","South Australia (SA)","Western Australia (WA)","Tasmania (TAS)","Australian Capital Territory (ACT)","Northern Territory (NT)"],"visa_types":["Student (Subclass 500)","Temporary Graduate (Subclass 485)","Skilled Independent (Subclass 189)"]}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="mt-4">
+<h4>
+<b>3. Create New User Account Test Suite <span class="badge bg-primary">auth/user/register</span></b>
+<span class="float-end badge bg-success">POST</span>
+<hr/>
+</h4>
+</div><div class="list-group mb-2">
+<div id="test-case-6" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-6-toggle"
+onClick="javascript:toggleTestCase(6)">
+<div><b>TEST CASE #6: Test Case 1: API called with empty data</b>
+<span class="float-end">
+<span class="badge bg-danger"><b>FAILED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-6-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: []</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+[]
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Error","message":"MISSING_MOBILE_NUMBER"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+Check DB insert
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-7" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-7-toggle"
+onClick="javascript:toggleTestCase(7)">
+<div><b>TEST CASE #7: Test Case 2: Mobile required, balance optional</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-7-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"name":"Test User 1","country":"USA","state":"California","mobile":"1234567890"}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"name":"Test User 1","country":"USA","state":"California","mobile":"1234567890"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Success","message":"USER_NEW_REGISTERED"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+DB Verified
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-8" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-8-toggle"
+onClick="javascript:toggleTestCase(8)">
+<div><b>TEST CASE #8: Test Case 3: Missing fields - Case 1</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-8-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"country":"India","state":"Telangana","mobile":"9876543210"}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"country":"India","state":"Telangana","mobile":"9876543210"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Success","message":"USER_NEW_REGISTERED"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+DB Verified
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-9" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-9-toggle"
+onClick="javascript:toggleTestCase(9)">
+<div><b>TEST CASE #9: Test Case 3: Missing fields - Case 2</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-9-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"name":"Test User 3","state":"Delhi","mobile":"9876543211"}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"name":"Test User 3","state":"Delhi","mobile":"9876543211"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Success","message":"USER_NEW_REGISTERED"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+DB Verified
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-10" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-10-toggle"
+onClick="javascript:toggleTestCase(10)">
+<div><b>TEST CASE #10: Test Case 3: Missing fields - Case 3</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-10-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"name":"Test User 4","country":"India","mobile":"9876543212"}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"name":"Test User 4","country":"India","mobile":"9876543212"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Success","message":"USER_NEW_REGISTERED"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+DB Verified
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-11" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-11-toggle"
+onClick="javascript:toggleTestCase(11)">
+<div><b>TEST CASE #11: Test Case 3: Missing fields - Case 4</b>
+<span class="float-end">
+<span class="badge bg-success"><b>PASSED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-11-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"name":"Test User 5","country":"India","state":"Karnataka","mobile":"9876543213","balance":null}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"name":"Test User 5","country":"India","state":"Karnataka","mobile":"9876543213","balance":null}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Success","message":"USER_NEW_REGISTERED"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+DB Verified
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div>
+</div><!--/.row -->
+</div><!--/.list-group-item -->
+</div><!--/.list-group --><div class="list-group mb-2">
+<div id="test-case-12" class="list-group-item header" data-bs-toggle="collapse"
+data-bs-target="#test-case-12-toggle"
+onClick="javascript:toggleTestCase(12)">
+<div><b>TEST CASE #12: Test Case 4: Duplicate data with same mobile</b>
+<span class="float-end">
+<span class="badge bg-danger"><b>FAILED</b></span>
+<i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
+</span>
+</div>
+</div>
+<div id="test-case-12-toggle" class="list-group-item collapse">
+<div class="row">
+<div class="col-md-12"><b>Description:</b> API called with: {"name":"Test User 1","country":"USA","state":"California","mobile":"1234567890"}</div>
+<div class="col-md-12"><b>URL:</b> http://localhost/aiwl-app2/auth/user/register <span class="badge bg-success">POST</span> </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div><b>Request Body:</b></div>
+<div class="card">
+<div class="card-body">
+{"name":"Test User 1","country":"USA","state":"California","mobile":"1234567890"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>API Response:</b></div>
+<div class="card">
+<div class="card-body">
+{"status":"Error","message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"}
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+<div class="col-md-4">
+<div><b>Test Result:</b></div>
+<div class="card">
+<div class="card-body">
+</div><!--/.card-body -->
+</div><!--/.card -->
+</div><!--/.col-md-4 -->
+</div><!--/.row -->
+<div class="row">
+<div class="col-md-12">
+<div><b>Comments:</b></div>
+<div class="card">
+<div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>

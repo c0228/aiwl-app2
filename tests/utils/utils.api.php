@@ -20,12 +20,3 @@ function callApi($url, $method = 'GET', $data = null) {
 /**
  * Validate DB value
  */
-function validateDb($database, $table, $conditions, $expected) {
-    $where = [];
-    foreach ($conditions as $col => $val) {
-        $where[] = "$col = '" . $database->escapeString($val) . "'";
-    }
-    $sql = "SELECT * FROM $table WHERE " . implode(' AND ', $where);
-    $result = $database->getData($sql);
-    return !empty($result) && array_intersect_assoc($expected, $result[0]) == $expected;
-}

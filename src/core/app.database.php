@@ -22,6 +22,39 @@ class Database
       //  else { $this->logger->info("Database connected Successfully"); }
         return $conn;
     }
+
+    function validateDb($table, $conditions, $expected) {
+        $conn = $this->dbinteraction();
+
+        // Build WHERE clause with proper escaping
+        $where = [];
+        foreach ($conditions as $col => $val) {
+            $where[] = $col . " = '" . $conn->real_escape_string($val) . "'";
+        }
+        $sql = "SELECT * FROM $table WHERE " . implode(' AND ', $where) . " LIMIT 1";
+
+        $result = $conn->query($sql);
+        if (!$result) {
+            $conn->close();
+            die("Invalid query: " . $conn->error);
+        }
+
+        $row = $result->fetch_assoc();
+        $conn->close();
+
+        if (!$row) {
+            return false; // No row matched
+        }
+
+        // Check if all expected key-value pairs match
+        foreach ($expected as $key => $value) {
+            if (!array_key_exists($key, $row) || $row[$key] != $value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     
     function addupdateData($sql) {
        $result="Error";

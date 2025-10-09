@@ -34,16 +34,22 @@ else if($_GET["action"]=='CREATE_USER_ACCOUNT' && $_SERVER["REQUEST_METHOD"]=='P
  $country = ''; if( array_key_exists("country", $htmlData) ){ $country = $htmlData["country"];  }
  $state = ''; if( array_key_exists("state", $htmlData) ){ $state = $htmlData["state"];  }
  $mobile = ''; if( array_key_exists("mobile", $htmlData) ){ $mobile = $htmlData["mobile"];  }
- $balance = ''; if( array_key_exists("balance", $htmlData) ){ $balance = $htmlData["balance"];  }
- $query = $userAccountsInfo->query_add_newUserAccount($name, $country, $state, $mobile, $balance);
- $result = array();
- try {
-	$status = $database->addupdateData($query);
-	$message = 'USER_NEW_REGISTERED';
- } catch (mysqli_sql_exception $e) { // Send the MySQL error message directly in JSON
-    $status = 'Error';
-    $message = $e->getMessage();
+ $balance = '';
+ if(strlen($mobile)>0){
+	$query = $userAccountsInfo->query_add_newUserAccount($name, $country, $state, $mobile, $balance);
+	$result = array();
+	try {
+		$status = $database->addupdateData($query);
+		$message = 'USER_NEW_REGISTERED';
+	} catch (mysqli_sql_exception $e) { // Send the MySQL error message directly in JSON
+		$status = 'Error';
+		$message = $e->getMessage();
+	}
+ } else {
+	$status = 'Error';
+	$message = 'MISSING_MOBILE_NUMBER';
  }
+
  $result["status"] = $status;
  $result["message"] = $message;
  echo json_encode( $result );

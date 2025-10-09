@@ -1,19 +1,62 @@
 <?php
-// require  __DIR__.'/utils/utils.api.php';
+require  __DIR__.'/../src/core/app.database.php';
+require  __DIR__.'/utils/utils.api.php';
 require  __DIR__.'/utils/gen.report.php';
 require __DIR__.'/apis/CountriesTest.php';
+require __DIR__.'/apis/StatesTest.php';
+require __DIR__.'/apis/CreateUserAccountTest.php';
+
+$DB_SERVERNAME = 'localhost:3306';
+$DB_NAME = 'iwlab';
+$DB_USER = 'root';
+$DB_PASSWORD = '';
+
+$database = new Database($DB_SERVERNAME,$DB_NAME,$DB_USER,$DB_PASSWORD);
 
 $API_PREFIX = "http://localhost/aiwl-app2/";
 $API_INFO = [
     "countries" => [
         "url" => "get/countries/list",
         "method" => "GET"
+    ],
+    "states" => [
+        "url" => "get/{country}/data",
+        "method" => "GET"
+    ],
+    "createUser" => [
+        "url" => "auth/user/register",
+        "method" => "POST"
     ]
 ];
 $GEN_REPORT = new GenerateReport("new-gen-report.html");
 
+// Testing Countries API
 $countriesTest = new CountriesTest();
 $countriesList = $countriesTest->testExecute();
+
+// Testing States API
+$statesTest = new StatesTest($countriesList);
+$statesTest->testExecute();
+
+// Testing Create User Account API
+$testUsers = [
+    [
+        "name" => "Alice Johnson",
+        "country" => "USA",
+        "state" => "California",
+        "mobile" => "9876543210",
+        "balance" => "500"
+    ],
+    [
+        "name" => "Ravi Kumar",
+        "country" => "India",
+        "state" => "Telangana",
+        "mobile" => "9123456789",
+        "balance" => "1000"
+    ]
+];
+$userTest = new CreateUserAccountTest($testUsers);
+$userTest->testExecute();
 
 /*
 $apiUrl = $API_PREFIX.$API_INFO["countries"]["url"];
