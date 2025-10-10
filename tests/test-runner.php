@@ -1,10 +1,11 @@
 <?php
-require  __DIR__.'/../src/core/app.database.php';
-require  __DIR__.'/utils/utils.api.php';
-require  __DIR__.'/utils/gen.report.php';
-require __DIR__.'/apis/CountriesTest.php';
-require __DIR__.'/apis/StatesTest.php';
-require __DIR__.'/apis/CreateUserAccountTest.php';
+require_once __DIR__ . '/helpers/TestHelper.php';
+require_once  __DIR__.'/utils/database.php';
+require_once  __DIR__.'/utils/utils.api.php';
+require_once  __DIR__.'/utils/gen.report.php';
+require_once __DIR__.'/apis/CountriesTest.php';
+require_once __DIR__.'/apis/StatesTest.php';
+require_once __DIR__.'/apis/CreateUserAccountTest.php';
 
 $DB_SERVERNAME = 'localhost:3306';
 $DB_NAME = 'iwlab';

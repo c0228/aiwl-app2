@@ -296,7 +296,7 @@ onClick="javascript:toggleTestCase(5)">
 <div id="test-case-6" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-6-toggle"
 onClick="javascript:toggleTestCase(6)">
-<div><b>TEST CASE #6: Test Case 1: API called with empty data</b>
+<div><b>TEST CASE #6: Test Case 1: Empty Data</b>
 <span class="float-end">
 <span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
@@ -350,7 +350,7 @@ data-bs-target="#test-case-7-toggle"
 onClick="javascript:toggleTestCase(7)">
 <div><b>TEST CASE #7: Test Case 2: Mobile required, balance optional</b>
 <span class="float-end">
-<span class="badge bg-success"><b>PASSED</b></span>
+<span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -373,7 +373,7 @@ onClick="javascript:toggleTestCase(7)">
 <div><b>API Response:</b></div>
 <div class="card">
 <div class="card-body">
-{"status":"Success","message":"USER_NEW_REGISTERED"}
+{"status":"Error","message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -381,7 +381,6 @@ onClick="javascript:toggleTestCase(7)">
 <div><b>Test Result:</b></div>
 <div class="card">
 <div class="card-body">
-DB Verified
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -391,6 +390,7 @@ DB Verified
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>
@@ -400,9 +400,9 @@ DB Verified
 <div id="test-case-8" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-8-toggle"
 onClick="javascript:toggleTestCase(8)">
-<div><b>TEST CASE #8: Test Case 3: Missing fields - Case 1</b>
+<div><b>TEST CASE #8: Test Case 3.1: Missing fields</b>
 <span class="float-end">
-<span class="badge bg-success"><b>PASSED</b></span>
+<span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -425,7 +425,7 @@ onClick="javascript:toggleTestCase(8)">
 <div><b>API Response:</b></div>
 <div class="card">
 <div class="card-body">
-{"status":"Success","message":"USER_NEW_REGISTERED"}
+{"status":"Error","message":"Duplicate entry '9876543210' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -433,7 +433,6 @@ onClick="javascript:toggleTestCase(8)">
 <div><b>Test Result:</b></div>
 <div class="card">
 <div class="card-body">
-DB Verified
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -443,6 +442,7 @@ DB Verified
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>
@@ -452,9 +452,9 @@ DB Verified
 <div id="test-case-9" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-9-toggle"
 onClick="javascript:toggleTestCase(9)">
-<div><b>TEST CASE #9: Test Case 3: Missing fields - Case 2</b>
+<div><b>TEST CASE #9: Test Case 3.2: Missing fields</b>
 <span class="float-end">
-<span class="badge bg-success"><b>PASSED</b></span>
+<span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -477,7 +477,7 @@ onClick="javascript:toggleTestCase(9)">
 <div><b>API Response:</b></div>
 <div class="card">
 <div class="card-body">
-{"status":"Success","message":"USER_NEW_REGISTERED"}
+{"status":"Error","message":"Duplicate entry '9876543211' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -485,7 +485,6 @@ onClick="javascript:toggleTestCase(9)">
 <div><b>Test Result:</b></div>
 <div class="card">
 <div class="card-body">
-DB Verified
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -495,6 +494,7 @@ DB Verified
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>
@@ -504,9 +504,9 @@ DB Verified
 <div id="test-case-10" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-10-toggle"
 onClick="javascript:toggleTestCase(10)">
-<div><b>TEST CASE #10: Test Case 3: Missing fields - Case 3</b>
+<div><b>TEST CASE #10: Test Case 3.3: Missing fields</b>
 <span class="float-end">
-<span class="badge bg-success"><b>PASSED</b></span>
+<span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -529,7 +529,7 @@ onClick="javascript:toggleTestCase(10)">
 <div><b>API Response:</b></div>
 <div class="card">
 <div class="card-body">
-{"status":"Success","message":"USER_NEW_REGISTERED"}
+{"status":"Error","message":"Duplicate entry '9876543212' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -537,7 +537,6 @@ onClick="javascript:toggleTestCase(10)">
 <div><b>Test Result:</b></div>
 <div class="card">
 <div class="card-body">
-DB Verified
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -547,6 +546,7 @@ DB Verified
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>
@@ -556,9 +556,9 @@ DB Verified
 <div id="test-case-11" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-11-toggle"
 onClick="javascript:toggleTestCase(11)">
-<div><b>TEST CASE #11: Test Case 3: Missing fields - Case 4</b>
+<div><b>TEST CASE #11: Test Case 3.4: Missing fields</b>
 <span class="float-end">
-<span class="badge bg-success"><b>PASSED</b></span>
+<span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -581,7 +581,7 @@ onClick="javascript:toggleTestCase(11)">
 <div><b>API Response:</b></div>
 <div class="card">
 <div class="card-body">
-{"status":"Success","message":"USER_NEW_REGISTERED"}
+{"status":"Error","message":"Duplicate entry '9876543213' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -589,7 +589,6 @@ onClick="javascript:toggleTestCase(11)">
 <div><b>Test Result:</b></div>
 <div class="card">
 <div class="card-body">
-DB Verified
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -599,6 +598,7 @@ DB Verified
 <div><b>Comments:</b></div>
 <div class="card">
 <div class="card-body">
+Check DB insert
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div>
@@ -608,7 +608,7 @@ DB Verified
 <div id="test-case-12" class="list-group-item header" data-bs-toggle="collapse"
 data-bs-target="#test-case-12-toggle"
 onClick="javascript:toggleTestCase(12)">
-<div><b>TEST CASE #12: Test Case 4: Duplicate data with same mobile</b>
+<div><b>TEST CASE #12: Test Case 4: Duplicate Mobile</b>
 <span class="float-end">
 <span class="badge bg-danger"><b>FAILED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
