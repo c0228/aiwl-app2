@@ -35,27 +35,28 @@
                 </div>
                 <div id="test-case-'.$index.'-toggle" class="list-group-item collapse">
                     <div class="row">
-                        <div class="col-md-12"><b>Description:</b> '.$tc["description"].'</div>
-                        <div class="col-md-12"><b>URL:</b> '.$tc["url"].' <span class="badge bg-success">'.$tc["method"].'</span> </div>
+                        <div class="col-md-12 mt-2"><b>Description:</b> '.$tc["description"].'</div>
+                        <div class="col-md-12 mt-2"><b>URL:</b> <code class="code"><b>'.$tc["url"].'</b></code></div>
+                        <div class="col-md-12 mt-2"><b>Method:</b> <span class="badge bg-success">'.$tc["method"].'</span> </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <div><b>Request Body:</b></div>
-                            <div class="card">
+                            <div class="card code">
                                 <div class="card-body">
                                     '.$tc["inputRequestBody"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <div><b>API Response:</b></div>
-                            <div class="card">
+                            <div class="card code">
                                 <div class="card-body">
                                     '.$tc["apiResponse"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <div><b>Test Result:</b></div>
                             <div class="card">
                                 <div class="card-body">
@@ -65,7 +66,7 @@
                         </div><!--/.col-md-4 -->
                     </div><!--/.row -->
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-2">
                             <div><b>Comments:</b></div>
                             <div class="card">
                                 <div class="card-body">
@@ -106,6 +107,8 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             <style>
+                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+                .code { font-weight:bold;background-color: #f5f5f5;padding: 5px 10px;border: 1px solid #db3684;color:#db3684;border-radius: 8px; }
                 .header { background-color: #eee;cursor:pointer; }
             </style>
             <script>

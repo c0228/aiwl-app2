@@ -19,6 +19,8 @@
 
 class CreateUserAccountTest {
     private $genReport; // Report generator instance
+    private $testData; // Test Data
+    private $testCaseHelper;
     private $helper; // Helper object for API & DB operations
     private $apiUrl; // API endpoint for creating users
     private $apiMethod; // HTTP method (usually POST)
@@ -37,12 +39,16 @@ class CreateUserAccountTest {
         if (!isset($apiInfo["createUser"])) {
             throw new Exception("API_INFO key 'createUser' not defined!");
         }
+        // Load Test Data
+        $this->testData = DataLoader::load(__DIR__ . '/../data/UserAccountsData.json');
         // Initialize TestHelper and test parameters
         $this->helper = new TestHelper($database, $apiPrefix);
         $this->apiUrl = $apiInfo["createUser"]["url"];
         $this->apiMethod = $apiInfo["createUser"]["method"];
         $this->apiResponses = [];
         $this->testResults = [];
+        // Create Object for Test Case Helper
+        $this->testCaseHelper = new TestCaseHelper($this->apiUrl, $this->apiMethod);
     }
 
     /**
@@ -51,10 +57,23 @@ class CreateUserAccountTest {
      */
     public function testExecute() {
         // Step-1: Execute all defined test cases
-        $this->testEmptyData();
-        $this->testMobileRequiredBalanceOptional();
-        $this->testMissingFields();
-        $this->testDuplicateMobile();
+        $testCasesList = array_keys( $this->testData );
+        foreach($testCasesList as $testCaseName){
+            // API Test
+            $apiTestResponse = $this->testCaseHelper->runAPI( $this->testData[$testCaseName] ); // Passed TestCase into it.
+            // Database Test
+
+            // Dummy Setup for Now
+            $apiTestResponse["testResult"] = "";
+            $apiTestResponse["comments"] = "";
+            // Results to be Added
+            $this->addResult( $apiTestResponse );
+
+        }
+        // $this->testEmptyData();
+        // $this->testMobileRequiredBalanceOptional();
+        // $this->testMissingFields();
+        // $this->testDuplicateMobile();
 
         // Step-2: After all tests, clean up test data
         $this->cleanupInsertedUsers();

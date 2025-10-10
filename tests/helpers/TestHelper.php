@@ -38,6 +38,7 @@ class TestHelper {
      *
      * @return array Returns structured test result for reporting
      */
+
     public function runApiTestCase($title, $apiUrl, $apiMethod, $requestData, $expectedMessage, 
         $dbTable = null, $dbConditions = null, $dbExpected = null) {
         // Full API URL (prefix + endpoint)
@@ -65,8 +66,8 @@ class TestHelper {
             "description" => "API called with: " . json_encode($requestData),
             "url" => $fullUrl,
             "method" => $apiMethod,
-            "inputRequestBody" => json_encode($requestData),
-            "apiResponse" => json_encode($response),
+            "inputRequestBody" => json_encode($requestData, JSON_PRETTY_PRINT),
+            "apiResponse" => json_encode($response, JSON_PRETTY_PRINT),
             "testResult" => $dbValidation ? "DB Verified" : "",
             "status" => $status,
             "comments" => $dbValidation ? "" : "Check DB insert"

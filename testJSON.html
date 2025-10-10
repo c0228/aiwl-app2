@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pretty API Response</title>
+<style>
+  body {
+    font-family: monospace;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+
+  .json-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 80vh;
+    overflow: auto;
+    white-space: pre-wrap; /* keeps formatting */
+    line-height: 1.4;
+  }
+
+  .key {
+    color: #a71d5d;
+    font-weight: bold;
+  }
+
+  .string {
+    color: #183691;
+  }
+
+  .number {
+    color: #0086b3;
+  }
+
+  .boolean {
+    color: #795da3;
+    font-weight: bold;
+  }
+
+  .null {
+    color: #d73a49;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<h2>API Response:</h2>
+<div class="json-container" id="json-display">
+{"tel_index":".+1","states":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],"visa_types":["F-1 Student","F-1 OPT (Optional Practical Training)","F-1 STEM OPT Extension","H-1B Work Visa","Green Card \/ Permanent Resident"]}
+</div>
+
+<script>
+  // Simple syntax highlighter for JSON string
+  function syntaxHighlight(json) {
+    return json
+      .replace(/(&|<|>)/g, '&$1;') // escape HTML
+      .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?)/g, function (match) {
+        if (/:$/.test(match)) {
+          return '<span class="key">' + match + '</span>';
+        } else {
+          return '<span class="string">' + match + '</span>';
+        }
+      })
+      .replace(/\b(true|false)\b/g, '<span class="boolean">$1</span>')
+      .replace(/\b(null)\b/g, '<span class="null">$1</span>')
+      .replace(/\b(-?\d+(\.\d+)?)\b/g, '<span class="number">$1</span>');
+  }
+
+  const container = document.getElementById('json-display');
+  container.innerHTML = syntaxHighlight(container.textContent);
+</script>
+
+</body>
+</html>

@@ -35,19 +35,24 @@ else if($_GET["action"]=='CREATE_USER_ACCOUNT' && $_SERVER["REQUEST_METHOD"]=='P
  $state = ''; if( array_key_exists("state", $htmlData) ){ $state = $htmlData["state"];  }
  $mobile = ''; if( array_key_exists("mobile", $htmlData) ){ $mobile = $htmlData["mobile"];  }
  $balance = '';
- if(strlen($mobile)>0){
+ if(strlen($name)>0 && strlen($country) && strlen($state) && strlen($mobile)>0){
 	$query = $userAccountsInfo->query_add_newUserAccount($name, $country, $state, $mobile, $balance);
 	$result = array();
 	try {
 		$status = $database->addupdateData($query);
-		$message = 'USER_NEW_REGISTERED';
+		$message = 'User Account Created Successfully';
 	} catch (mysqli_sql_exception $e) { // Send the MySQL error message directly in JSON
 		$status = 'Error';
 		$message = $e->getMessage();
 	}
  } else {
+	$message = 'Missing';
+	if(strlen($name)==0) { $message.= ' name,'; }
+	if(strlen($country)==0) { $message.= ' country,'; }
+	if(strlen($state)==0) { $message.= ' state,'; }
+	if(strlen($mobile)==0) { $message.= ' mobile number,'; }
+	$message = chop($message,',');
 	$status = 'Error';
-	$message = 'MISSING_MOBILE_NUMBER';
  }
 
  $result["status"] = $status;
