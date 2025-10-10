@@ -60,8 +60,13 @@ class CreateUserAccountTest {
         $testCasesList = array_keys( $this->testData );
         foreach($testCasesList as $testCaseName){
             // API Test
-            $apiTestResponse = $this->testCaseHelper->runAPI( $this->testData[$testCaseName]["api"] ); // Passed TestCase into it.
+            $apiTest = $this->testData[$testCaseName]["api"];
+            $apiTestResponse = $this->testCaseHelper->runAPI( $apiTest ); // Passed TestCase into it.
+
             // Database Test
+            $databaseTest = $this->testData[$testCaseName]["database"];
+            $databaseHelper = new DatabaseHelper();
+            $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] );
 
             // Dummy Setup for Now
             $apiTestResponse["testResult"] = "";

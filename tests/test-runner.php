@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/helpers/TestHelper.php';
 require_once __DIR__ . '/helpers/TestCaseHelper.php';
+require_once __DIR__ . '/helpers/DatabaseHelper.php';
 require_once __DIR__ . '/helpers/DataLoader.php';
 require_once  __DIR__.'/utils/database.php';
 require_once  __DIR__.'/utils/utils.api.php';
