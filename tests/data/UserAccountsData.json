@@ -69,6 +69,24 @@
                 "status":"Success",
                 "message":"User Account Created Successfully"
             }
+        },
+        "database":{
+            "title":"Testing in Database Table that expected Fields got inserted or not",
+            "desc":"",
+            "apiFieldToTblColumnMapper":[{
+                    "apiField":"name",
+                    "tblColumnName":"user_accounts_info.name"
+                },{
+                    "apiField":"country",
+                    "tblColumnName":"user_accounts_info.country"
+                },{
+                    "apiField":"state",
+                    "tblColumnName":"user_accounts_info.state"
+                },{
+                    "apiField":"mobile",
+                    "tblColumnName":"user_accounts_info.mobile"
+                }],
+            "expectedResult":""
         }
     },
     "TestCase#06":{
