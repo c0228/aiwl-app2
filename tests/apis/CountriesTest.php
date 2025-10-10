@@ -36,6 +36,7 @@ class CountriesTest {
                     "method" => $this->apiMethod,
                     "inputRequestBody" => "-",
                     "apiResponse" => json_encode($this->apiResponse),
+                    "expectedResult" => "",
                     "testResult" => "",
                     "status" => $this->apiStatus,
                     "comments" => ""

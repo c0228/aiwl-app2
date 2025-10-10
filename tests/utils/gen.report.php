@@ -57,10 +57,10 @@
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
                         <div class="col-md-4 mt-2">
-                            <div><b>Test Result:</b></div>
-                            <div class="card">
+                            <div><b>Expected Response:</b></div>
+                            <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["testResult"].'
+                                    '.$tc["expectedResult"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->

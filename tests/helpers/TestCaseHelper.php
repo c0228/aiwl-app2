@@ -32,7 +32,11 @@
             "url" => $fullUrl,
             "method" => $this->apiMethod,
             "inputRequestBody" => json_encode($requestData, JSON_PRETTY_PRINT),
-            "apiResponse" => json_encode($response, JSON_PRETTY_PRINT),          
+            "apiResponse" => json_encode($response, JSON_PRETTY_PRINT),
+            "expectedResult" => json_encode([
+                "status" => $expectedResultStatus,
+                "message" => $expectedResultMessage
+            ])     
         ];
         return $result;
     }

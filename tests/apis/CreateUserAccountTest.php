@@ -60,7 +60,7 @@ class CreateUserAccountTest {
         $testCasesList = array_keys( $this->testData );
         foreach($testCasesList as $testCaseName){
             // API Test
-            $apiTestResponse = $this->testCaseHelper->runAPI( $this->testData[$testCaseName] ); // Passed TestCase into it.
+            $apiTestResponse = $this->testCaseHelper->runAPI( $this->testData[$testCaseName]["api"] ); // Passed TestCase into it.
             // Database Test
 
             // Dummy Setup for Now
@@ -70,10 +70,6 @@ class CreateUserAccountTest {
             $this->addResult( $apiTestResponse );
 
         }
-        // $this->testEmptyData();
-        // $this->testMobileRequiredBalanceOptional();
-        // $this->testMissingFields();
-        // $this->testDuplicateMobile();
 
         // Step-2: After all tests, clean up test data
         $this->cleanupInsertedUsers();
@@ -90,84 +86,6 @@ class CreateUserAccountTest {
 
         // Return collected API responses
         return $this->apiResponses;
-    }
-
-    // -------------------- Individual Test Cases --------------------
-    /**
-     * Test Case 1: Sends completely empty data to the API.
-     * Expected: Validation failure or missing field error.
-     */
-    private function testEmptyData() {
-        $this->addResult(
-            $this->helper->runApiTestCase(
-                "Test Case 1: Empty Data",
-                $this->apiUrl,
-                $this->apiMethod,
-                [],
-                ""
-            )
-        );
-    }
-
-    /**
-     * Test Case 2: Checks if 'mobile' is mandatory and 'balance' is optional.
-     * Expected: Successful registration (USER_NEW_REGISTERED).
-     */
-    private function testMobileRequiredBalanceOptional() {
-        $user = ["name" => "Test User 1", "country" => "USA", "state" => "California", "mobile" => "1234567890"];
-        $this->addResult(
-            $this->helper->runApiTestCase(
-                "Test Case 2: Mobile required, balance optional",
-                $this->apiUrl,
-                $this->apiMethod,
-                $user,
-                'USER_NEW_REGISTERED',
-                "user_accounts_info",
-                ["mobile" => $user["mobile"]],
-                $user
-            )
-        );
-    }
-
-     /**
-     * Test Case 3: Runs multiple sub-tests for missing required fields.
-     * Each variation removes one key field (name, country, state, etc.)
-     */
-    private function testMissingFields() {
-        $cases = [
-            ["country" => "India", "state" => "Telangana", "mobile" => "9876543210"],
-            ["name" => "Test User 3", "state" => "Delhi", "mobile" => "9876543211"],
-            ["name" => "Test User 4", "country" => "India", "mobile" => "9876543212"],
-            ["name" => "Test User 5", "country" => "India", "state" => "Karnataka", "mobile" => "9876543213", "balance" => null]
-        ];
-        foreach ($cases as $i => $case) {
-            $this->addResult(
-                $this->helper->runApiTestCase(
-                    "Test Case 3." . ($i+1) . ": Missing fields",
-                    $this->apiUrl,
-                    $this->apiMethod,
-                    $case,
-                    ""
-                )
-            );
-        }
-    }
-
-    /**
-     * Test Case 4: Attempts to register a user with an already existing mobile number.
-     * Expected: Failure or duplicate record message.
-     */
-    private function testDuplicateMobile() {
-        $user = ["name" => "Test User 1", "country" => "USA", "state" => "California", "mobile" => "1234567890"];
-        $this->addResult(
-            $this->helper->runApiTestCase(
-                "Test Case 4: Duplicate Mobile",
-                $this->apiUrl,
-                $this->apiMethod,
-                $user,
-                ""
-            )
-        );
     }
 
     // -------------------- Utility Methods --------------------

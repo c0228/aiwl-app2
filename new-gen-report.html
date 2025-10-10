@@ -62,8 +62,8 @@ onClick="javascript:toggleTestCase(1)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
 </div><!--/.card-body -->
 </div><!--/.card -->
@@ -120,8 +120,8 @@ onClick="javascript:toggleTestCase(2)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
 </div><!--/.card-body -->
 </div><!--/.card -->
@@ -172,8 +172,8 @@ onClick="javascript:toggleTestCase(3)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
 </div><!--/.card-body -->
 </div><!--/.card -->
@@ -224,8 +224,8 @@ onClick="javascript:toggleTestCase(4)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
 </div><!--/.card-body -->
 </div><!--/.card -->
@@ -276,8 +276,8 @@ onClick="javascript:toggleTestCase(5)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
 </div><!--/.card-body -->
 </div><!--/.card -->
@@ -337,9 +337,10 @@ onClick="javascript:toggleTestCase(6)">
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Error","message":"Missing name, country, state, mobile number"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -360,7 +361,7 @@ data-bs-target="#test-case-7-toggle"
 onClick="javascript:toggleTestCase(7)">
 <div><b>TEST CASE #7: Testing to create an User Account with country, state and mobile number</b>
 <span class="float-end">
-<span class="badge bg-danger"><b>FAILED</b></span>
+<span class="badge bg-success"><b>PASSED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -376,13 +377,11 @@ onClick="javascript:toggleTestCase(7)">
 <div><b>Request Body:</b></div>
 <div class="card code">
 <div class="card-body">
-[
 {
 "country": "India",
 "state": "Telangana",
 "mobile": "9876543210"
 }
-]
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -392,15 +391,16 @@ onClick="javascript:toggleTestCase(7)">
 <div class="card-body">
 {
 "status": "Error",
-"message": "Missing name, country, state, mobile number"
+"message": "Missing name"
 }
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Error","message":"Missing name"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -421,7 +421,7 @@ data-bs-target="#test-case-8-toggle"
 onClick="javascript:toggleTestCase(8)">
 <div><b>TEST CASE #8: Testing to create an User Account with name, state and mobile number</b>
 <span class="float-end">
-<span class="badge bg-danger"><b>FAILED</b></span>
+<span class="badge bg-success"><b>PASSED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -437,13 +437,11 @@ onClick="javascript:toggleTestCase(8)">
 <div><b>Request Body:</b></div>
 <div class="card code">
 <div class="card-body">
-[
 {
 "name": "Test User 2",
 "state": "Delhi",
 "mobile": "9876543211"
 }
-]
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -453,15 +451,16 @@ onClick="javascript:toggleTestCase(8)">
 <div class="card-body">
 {
 "status": "Error",
-"message": "Missing name, country, state, mobile number"
+"message": "Missing country"
 }
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Error","message":"Missing country"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -482,7 +481,7 @@ data-bs-target="#test-case-9-toggle"
 onClick="javascript:toggleTestCase(9)">
 <div><b>TEST CASE #9: Testing to create an User Account with name, country and mobile number</b>
 <span class="float-end">
-<span class="badge bg-danger"><b>FAILED</b></span>
+<span class="badge bg-success"><b>PASSED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -498,13 +497,11 @@ onClick="javascript:toggleTestCase(9)">
 <div><b>Request Body:</b></div>
 <div class="card code">
 <div class="card-body">
-[
 {
 "name": "Test User 3",
 "country": "India",
 "mobile": "9876543212"
 }
-]
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -514,15 +511,16 @@ onClick="javascript:toggleTestCase(9)">
 <div class="card-body">
 {
 "status": "Error",
-"message": "Missing name, country, state, mobile number"
+"message": "Missing state"
 }
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Error","message":"Missing state"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -543,7 +541,7 @@ data-bs-target="#test-case-10-toggle"
 onClick="javascript:toggleTestCase(10)">
 <div><b>TEST CASE #10: Testing to Create an User Account with a Valid User Data</b>
 <span class="float-end">
-<span class="badge bg-danger"><b>FAILED</b></span>
+<span class="badge bg-success"><b>PASSED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -559,14 +557,12 @@ onClick="javascript:toggleTestCase(10)">
 <div><b>Request Body:</b></div>
 <div class="card code">
 <div class="card-body">
-[
 {
 "name": "Test User 4",
 "country": "USA",
 "state": "California",
 "mobile": "1234567890"
 }
-]
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -575,16 +571,17 @@ onClick="javascript:toggleTestCase(10)">
 <div class="card code">
 <div class="card-body">
 {
-"status": "Error",
-"message": "Missing name, country, state, mobile number"
+"status": "Success",
+"message": "User Account Created Successfully"
 }
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Success","message":"User Account Created Successfully"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -605,7 +602,7 @@ data-bs-target="#test-case-11-toggle"
 onClick="javascript:toggleTestCase(11)">
 <div><b>TEST CASE #11: Testing to create an User Account with duplicate mobile number</b>
 <span class="float-end">
-<span class="badge bg-danger"><b>FAILED</b></span>
+<span class="badge bg-success"><b>PASSED</b></span>
 <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
 </span>
 </div>
@@ -621,14 +618,12 @@ onClick="javascript:toggleTestCase(11)">
 <div><b>Request Body:</b></div>
 <div class="card code">
 <div class="card-body">
-[
 {
 "name": "Test User 5",
 "country": "USA",
 "state": "California",
 "mobile": "1234567890"
 }
-]
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
@@ -638,15 +633,16 @@ onClick="javascript:toggleTestCase(11)">
 <div class="card-body">
 {
 "status": "Error",
-"message": "Missing name, country, state, mobile number"
+"message": "Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"
 }
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->
 <div class="col-md-4 mt-2">
-<div><b>Test Result:</b></div>
-<div class="card">
+<div><b>Expected Response:</b></div>
+<div class="card code">
 <div class="card-body">
+{"status":"Error","message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"}
 </div><!--/.card-body -->
 </div><!--/.card -->
 </div><!--/.col-md-4 -->

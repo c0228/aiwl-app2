@@ -45,6 +45,7 @@ class StatesTest {
                 "method" => $this->apiMethod,
                 "inputRequestBody" => "-",
                 "apiResponse" => json_encode($response),
+                "expectedResult" => "",
                 "testResult" => "",
                 "status" => $status,
                 "comments" => ""
