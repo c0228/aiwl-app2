@@ -1,107 +1,117 @@
 {
-    "TestCase#01":{
+    "init":{
         "api":{
-            "title":"Testing to Create an User Account with Empty Data",
-            "desc": "",
-            "data":{},
-            "expectedResult":{
-                "status":"Error",
-                "message":"Missing name, country, state, mobile number"
-            }
-        }
-    },
-    "TestCase#02":{
-        "api":{
-            "title":"Testing to create an User Account with country, state and mobile number",
-            "desc":"",
-            "data":{
-                "country": "India", 
-                "state": "Telangana", 
-                "mobile": "9876543210"
-            },
-            "expectedResult":{
-                "status":"Error",
-                "message":"Missing name"
-            }
-        }
-    },
-    "TestCase#03":{
-        "api":{
-            "title":"Testing to create an User Account with name, state and mobile number",
-            "desc":"",
-            "data":{
-                "name": "Test User 2", 
-                "state": "Delhi", 
-                "mobile": "9876543211"
-            },
-            "expectedResult":{
-                "status":"Error",
-                "message":"Missing country"
-            }
-        }
-    },
-    "TestCase#04":{
-        "api":{
-            "title":"Testing to create an User Account with name, country and mobile number",
-            "desc":"",
-            "data":{
-                "name": "Test User 3", 
-                "country": "India", 
-                "mobile": "9876543212"
-            },
-            "expectedResult":{
-                "status":"Error",
-                "message":"Missing state"
-            }
-        }
-    },
-    "TestCase#05":{
-        "api":{
-            "title":"Testing to Create an User Account with a Valid User Data",
-            "desc": "",
-            "data":{
-                "name": "Test User 4",
-                "country": "USA",
-                "state": "California",
-                "mobile": "1234567890"
-            },
-            "expectedResult":{
-                "status":"Success",
-                "message":"User Account Created Successfully"
-            }
+
         },
         "database":{
-            "title":"Testing in Database Table that expected Fields got inserted or not",
-            "desc":"",
-            "apiFieldToTblColumnMapper":[{
-                    "apiField":"name",
-                    "tblColumnName":"user_accounts_info.name"
-                },{
-                    "apiField":"country",
-                    "tblColumnName":"user_accounts_info.country"
-                },{
-                    "apiField":"state",
-                    "tblColumnName":"user_accounts_info.state"
-                },{
-                    "apiField":"mobile",
-                    "tblColumnName":"user_accounts_info.mobile"
-                }],
-            "expectedResult":"CHECK_INSERT_DATA"
+            "clean":["user_accounts_info"]
         }
     },
-    "TestCase#06":{
-        "api":{
-            "title":"Testing to create an User Account with duplicate mobile number",
-            "desc":"",
-            "data":{
-                "name": "Test User 5", 
-                "country": "USA", 
-                "state": "California", 
-                "mobile": "1234567890"
+    "execute":{
+        "TestCase#01":{
+            "api":{
+                "title":"Testing to Create an User Account with Empty Data",
+                "desc": "",
+                "data":{},
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Missing name, country, state, mobile number"
+                }
+            }
+        },
+        "TestCase#02":{
+            "api":{
+                "title":"Testing to create an User Account with country, state and mobile number",
+                "desc":"",
+                "data":{
+                    "country": "India", 
+                    "state": "Telangana", 
+                    "mobile": "9876543210"
+                },
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Missing name"
+                }
+            }
+        },
+        "TestCase#03":{
+            "api":{
+                "title":"Testing to create an User Account with name, state and mobile number",
+                "desc":"",
+                "data":{
+                    "name": "Test User 2", 
+                    "state": "Delhi", 
+                    "mobile": "9876543211"
+                },
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Missing country"
+                }
+            }
+        },
+        "TestCase#04":{
+            "api":{
+                "title":"Testing to create an User Account with name, country and mobile number",
+                "desc":"",
+                "data":{
+                    "name": "Test User 3", 
+                    "country": "India", 
+                    "mobile": "9876543212"
+                },
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Missing state"
+                }
+            }
+        },
+        "TestCase#05":{
+            "api":{
+                "title":"Testing to Create an User Account with a Valid User Data",
+                "desc": "",
+                "data":{
+                    "name": "Test User 4",
+                    "country": "USA",
+                    "state": "California",
+                    "mobile": "1234567890"
+                },
+                "expectedResult":{
+                    "status":"Success",
+                    "message":"User Account Created Successfully"
+                }
             },
-            "expectedResult":{
-                "status":"Error",
-                "message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"
+            "database":{
+                "title":"Testing in Database Table that expected Fields got inserted or not",
+                "desc":"",
+                "apiFieldToTblColumnMapper":[{
+                        "apiField":"name",
+                        "tblColumnName":"user_accounts_info.name"
+                    },{
+                        "apiField":"country",
+                        "tblColumnName":"user_accounts_info.country"
+                    },{
+                        "apiField":"state",
+                        "tblColumnName":"user_accounts_info.state"
+                    },{
+                        "apiField":"mobile",
+                        "tblColumnName":"user_accounts_info.mobile"
+                    }],
+                "expectedResult":"CHECK_INSERT_DATA"
+            }
+        },
+        "TestCase#06":{
+            "api":{
+                "title":"Testing to create an User Account with duplicate mobile number",
+                "desc":"",
+                "data":{
+                    "name": "Test User 5", 
+                    "country": "USA", 
+                    "state": "California", 
+                    "mobile": "1234567890"
+                },
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"
+                }
             }
         }
     }
