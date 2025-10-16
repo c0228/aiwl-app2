@@ -39,7 +39,7 @@ class StatesTest {
             ];
         }
 
-        // Compile results into HTML report
+        // STEP #3: Compile results into HTML report
         $genReport->apiTestTitle([
             "title" => "Get List of States per Country",
             "url" => "get/{country}/data",
