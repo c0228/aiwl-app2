@@ -66,9 +66,17 @@
                         </div><!--/.col-md-4 -->
                     </div><!--/.row -->
                     <div class="row">
-                        <div class="col-md-12 mt-2">
+                        <div class="col-md-6 mt-2">
+                            <div><b>Step Logs:</b></div>
+                            <div class="card code">
+                                <div class="card-body">
+                                    '.$tc["step-logs"].'
+                                </div><!--/.card-body -->
+                            </div><!--/.card -->
+                        </div>
+                        <div class="col-md-6 mt-2">
                             <div><b>Comments:</b></div>
-                            <div class="card">
+                            <div class="card code">
                                 <div class="card-body">
                                     '.$tc["comments"].'
                                 </div><!--/.card-body -->

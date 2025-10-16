@@ -1,6 +1,6 @@
 <?php
 
-class Database
+class DatabaseConfig
 {
     private $logger;
 	private $serverName;

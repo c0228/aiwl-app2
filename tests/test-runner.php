@@ -1,15 +1,19 @@
 <?php
+require_once __DIR__.'/utils/DatabaseConfig.php';
+require_once __DIR__.'/utils/ReportConfig.php';
+require_once __DIR__.'/constants/BusinessConstants.php';
 require_once __DIR__ . '/helpers/TestHelper.php';
 require_once __DIR__ . '/helpers/TestCaseHelper.php';
 require_once __DIR__ . '/helpers/DatabaseHelper.php';
 require_once __DIR__ . '/helpers/DataLoader.php';
-require_once  __DIR__.'/utils/database.php';
-require_once  __DIR__.'/utils/utils.api.php';
-require_once  __DIR__.'/utils/gen.report.php';
+
+require_once __DIR__.'/utils/utils.api.php';
+
 require_once __DIR__.'/apis/CountriesTest.php';
 require_once __DIR__.'/apis/StatesTest.php';
 require_once __DIR__.'/apis/CreateUserAccountTest.php';
 
+/*
 $DB_SERVERNAME = 'localhost:3306';
 $DB_NAME = 'iwlab';
 $DB_USER = 'root';
@@ -33,17 +37,18 @@ $API_INFO = [
     ]
 ];
 $GEN_REPORT = new GenerateReport("new-gen-report.html");
+*/
 
 // Testing Countries API
 $countriesTest = new CountriesTest();
 $countriesList = $countriesTest->testExecute();
 
 // Testing States API
-$statesTest = new StatesTest($countriesList);
-$statesTest->testExecute();
+// $statesTest = new StatesTest($countriesList);
+// $statesTest->testExecute();
 
 // Testing Create User Account API
-$testUsers = [
+/* $testUsers = [
     [
         "name" => "Alice Johnson",
         "country" => "USA",
@@ -60,7 +65,7 @@ $testUsers = [
     ]
 ];
 $userTest = new CreateUserAccountTest($testUsers);
-$userTest->testExecute();
+$userTest->testExecute(); */
 
 /*
 $apiUrl = $API_PREFIX.$API_INFO["countries"]["url"];

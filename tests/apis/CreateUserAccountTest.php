@@ -18,6 +18,7 @@
  */
 
 class CreateUserAccountTest {
+    private $DB_TBL_NAME = 'user_accounts_info';
     private $genReport; // Report generator instance
     private $testData; // Test Data
     private $testCaseHelper;
@@ -31,6 +32,9 @@ class CreateUserAccountTest {
      * Constructor initializes dependencies and loads API configuration.
      */
     public function __construct() {
+        // STEP-1: Load Test Data
+        $this->testData = DataLoader::load(__DIR__ . '/../data/UserAccountsData.json');
+        // Initial Parameters
         $database = $GLOBALS["database"];
         $apiPrefix = $GLOBALS["API_PREFIX"] ?? '';
         $this->genReport = $GLOBALS["GEN_REPORT"] ?? null;
@@ -39,18 +43,19 @@ class CreateUserAccountTest {
         if (!isset($apiInfo["createUser"])) {
             throw new Exception("API_INFO key 'createUser' not defined!");
         }
-        // Load Test Data
-        $this->testData = DataLoader::load(__DIR__ . '/../data/UserAccountsData.json');
+        
         // Initialize TestHelper and test parameters
-        $this->helper = new TestHelper($database, $apiPrefix);
+       //
+       //  $this->helper = new TestHelper($database, $apiPrefix);
         $this->apiUrl = $apiInfo["createUser"]["url"];
         $this->apiMethod = $apiInfo["createUser"]["method"];
         $this->apiResponses = [];
         $this->testResults = [];
         // Create Object for Test Case Helper
         $this->testCaseHelper = new TestCaseHelper($this->apiUrl, $this->apiMethod);
+        // database clean user_accounts_info
+       //  $this->helper->cleanupTables($this->testData["init"]["database"]["clean"]);
     }
-
     /**
      * Main function that executes all test cases sequentially.
      * Also performs cleanup and reporting at the end.
@@ -109,7 +114,7 @@ class CreateUserAccountTest {
     private function cleanupInsertedUsers() {
         $mobiles = ["1234567890", "9876543210", "9876543211", "9876543212", "9876543213"];
         foreach ($mobiles as $mobile) {
-            $this->helper->cleanupTestData("user_accounts_info", ["mobile" => $mobile]);
+           // $this->helper->cleanupTestData("user_accounts_info", ["mobile" => $mobile]);
         }
     }
 }

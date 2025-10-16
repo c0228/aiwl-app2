@@ -1,50 +1,47 @@
 <?php
 class CountriesTest {
-    private $genReport;
-    private $apiPrefix;
-    private $apiUrl;
-    private $apiMethod;
-    private $apiResponse;
-    private $apiStatus;
-
-    public function __construct() {
-        $this->apiPrefix = $GLOBALS["API_PREFIX"];
-        $this->genReport = $GLOBALS["GEN_REPORT"];
-        $apiInfo = $GLOBALS["API_INFO"];
-        $this->apiUrl = $apiInfo["countries"]["url"];
-        $this->apiMethod = $apiInfo["countries"]["method"];
-    }
 
     public function testExecute() {
-        $url = $this->apiPrefix . $this->apiUrl;
-        $this->apiResponse = callApi($url, $this->apiMethod);
+        // Initial Setup
+        $apiDetails = $GLOBALS["API_DETAILS"];
+        $genReport = $GLOBALS["GEN_REPORT_OBJ"];
 
-        // Determine if API returned valid list
-        $this->apiStatus = (is_array($this->apiResponse) && count($this->apiResponse) > 0)
-            ? 'PASSED'
-            : 'FAILED';
+        // STEP #1: Get API Details
+        $apiPrefix = $apiDetails["prefix"];
+        $apiInfo = $apiDetails["info"]["countries"];
+        $apiUrl = $apiInfo["url"];
+        $apiMethod = $apiInfo["method"];
+        $url = $apiPrefix.$apiUrl;
 
-        $this->genReport->apiTestTitle([
+        // STEP #2: Call API with Details
+        $apiResponse = callApi($url, $apiMethod);
+
+        // STEP #3: Determine if API returned valid list
+        $apiStatus = (is_array($apiResponse) && count($apiResponse) > 0)?'PASSED':'FAILED';
+
+        // STEP #4: Generate Report
+        $genReport->apiTestTitle([
             "title" => "Get List of Countries",
-            "url" => $this->apiUrl,
-            "method" => $this->apiMethod,
+            "url" => $apiUrl,
+            "method" => $apiMethod,
             "testCases" => [
                 [
                     "title" => "Test the response is providing Countries List or not",
                     "description" => "We are hitting API and testing whether the response provides the list of countries.",
-                    "url" => $this->apiPrefix . $this->apiUrl,
-                    "method" => $this->apiMethod,
+                    "url" => $apiPrefix . $apiUrl,
+                    "method" => $apiMethod,
                     "inputRequestBody" => "-",
-                    "apiResponse" => json_encode($this->apiResponse),
+                    "apiResponse" => json_encode($apiResponse),
                     "expectedResult" => "",
                     "testResult" => "",
-                    "status" => $this->apiStatus,
+                    "status" => $apiStatus,
+                    "step-logs" => "",
                     "comments" => ""
                 ]
             ]
         ]);
 
-        return $this->apiResponse;
+        return $apiResponse;
     }
 }
 ?>
