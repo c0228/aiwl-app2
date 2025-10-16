@@ -44,8 +44,8 @@ $countriesTest = new CountriesTest();
 $countriesList = $countriesTest->testExecute();
 
 // Testing States API
-// $statesTest = new StatesTest($countriesList);
-// $statesTest->testExecute();
+$statesTest = new StatesTest();
+$statesTest->testExecute($countriesList);
 
 // Testing Create User Account API
 /* $testUsers = [
