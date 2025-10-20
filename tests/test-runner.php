@@ -2,7 +2,7 @@
 require_once __DIR__.'/utils/DatabaseConfig.php';
 require_once __DIR__.'/utils/ReportConfig.php';
 require_once __DIR__.'/constants/BusinessConstants.php';
-require_once __DIR__ . '/helpers/TestHelper.php';
+// require_once __DIR__ . '/helpers/TestHelper.php';
 require_once __DIR__ . '/helpers/TestCaseHelper.php';
 require_once __DIR__ . '/helpers/DatabaseHelper.php';
 require_once __DIR__ . '/helpers/DataLoader.php';
@@ -47,6 +47,9 @@ $countriesList = $countriesTest->testExecute();
 $statesTest = new StatesTest();
 $statesTest->testExecute($countriesList);
 
+// Create User Account
+$createUserAccountTest = new CreateUserAccountTest();
+$createUserAccountTest->testExecute();
 // Testing Create User Account API
 /* $testUsers = [
     [

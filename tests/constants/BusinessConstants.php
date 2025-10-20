@@ -6,7 +6,8 @@ $DB_NAME = 'iwlab';
 $DB_USER = 'root';
 $DB_PASSWORD = '';
 
-$TBL_USER_ACCOUNTS_INFO = 'user_accounst_info';
+$TBL_USER_ACCOUNTS_INFO = 'user_accounts_info';
+$TBL_COL_CREATEDBY = 'app-auto-test';
 
 $DB_CONN = new DatabaseConfig($DB_SERVERNAME,$DB_NAME,$DB_USER,$DB_PASSWORD);
 
@@ -29,8 +30,12 @@ $API_DETAILS = [
      ]
     ];
 
-// SECTION #3: GENERATE REPORTS
+// SECTION #3: Load Test Data Files
+$USER_ACCOUNT_TESTDATAFILE = __DIR__.'/../data/UserAccountsData.json';
+
+// SECTION #4: GENERATE REPORTS
 $GEN_REPORT_FILE = 'new-gen-report.html';
 $GEN_REPORT_OBJ = new GenerateReport($GEN_REPORT_FILE);
+
 
 ?>

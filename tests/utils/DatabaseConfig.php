@@ -81,6 +81,6 @@ class DatabaseConfig
         $affectedRows = $conn->affected_rows;
         $conn->close();
 
-        return $affectedRows > 0;
+        return $affectedRows;
     }
 }

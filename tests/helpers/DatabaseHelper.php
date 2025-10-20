@@ -2,7 +2,7 @@
 class DatabaseHelper {
     private $database;
     public function __construct() {
-        $this->database = $GLOBALS["database"];
+        $this->database = $GLOBALS["DB_CONN"];
     }
     public function testInDatabase($dbTestCase, $apiTestData){
         print_r($dbTestCase);
@@ -15,11 +15,10 @@ class DatabaseHelper {
         if (!empty($cleanData)) {
             foreach ($cleanData as $tableName) {
                 try {
-                    $query = "DELETE FROM `$tableName` WHERE createdBy='"."'";
-                    $stmt = $this->database->prepare($query);
-                    $stmt->execute();
-                    echo "[CLEANUP] Table '$tableName' cleaned successfully.\n";
-                    return true;
+                    $affectedRows = $this->database->deleteFromTable($tableName, [
+                        "createdBy" => $GLOBALS["TBL_COL_CREATEDBY"]
+                    ]);
+                    echo "DELETED ".$affectedRows." ROWS.";
                 } catch (Exception $e) {
                     echo "[ERROR] Failed to clean table '$tableName': " . $e->getMessage() . "\n";
                     return false;
