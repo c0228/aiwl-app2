@@ -27,9 +27,10 @@ class DatabaseConfig
         // Build WHERE clause with proper escaping
         $where = [];
         foreach ($conditions as $col => $val) {
+            $val = $val ?? ""; // convert null to empty string
             $where[] = $col . " = '" . $conn->real_escape_string($val) . "'";
         }
-        $sql = "SELECT * FROM $table WHERE " . implode(' AND ', $where) . " LIMIT 1";
+        $sql = "SELECT * FROM $table WHERE " . implode(' AND ', $where);
 
         $result = $conn->query($sql);
         if (!$result) {

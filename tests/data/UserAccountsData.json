@@ -95,7 +95,7 @@
                         "apiField":"mobile",
                         "tblColumnName":"user_accounts_info.mobile"
                     }],
-                "expectedResult":"CHECK_INSERT_DATA"
+                "expectedResult":"CHECK_DATA_INSERT"
             }
         },
         "TestCase#06":{

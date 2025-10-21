@@ -3,6 +3,9 @@
 class StatesTest {
 
     public function testExecute($countriesList) {
+        if (!is_array($countriesList) || empty($countriesList)) {
+            throw new InvalidArgumentException("countriesList must be a non-empty array");
+        } else {
         // Initial Setup
         $apiDetails = $GLOBALS["API_DETAILS"];
         $genReport = $GLOBALS["GEN_REPORT_OBJ"];
@@ -48,6 +51,7 @@ class StatesTest {
         ]);
 
         return $apiResponses;
+      }
     }
 }
 ?>
