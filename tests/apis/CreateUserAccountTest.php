@@ -38,10 +38,7 @@ class CreateUserAccountTest {
             $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
 
             // Database Test
-            $databaseTest = [];
-            if(isset($executeData[$testCaseName]["database"])){
-                $databaseTest = $executeData[$testCaseName]["database"];
-            }
+            $databaseTest = $executeData[$testCaseName]["database"] ?? [];
             $databaseHelper = new DatabaseHelper();
             $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
         }

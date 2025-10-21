@@ -5,8 +5,21 @@ class DatabaseHelper {
         $this->database = $GLOBALS["DB_CONN"];
     }
     public function testInDatabase($dbTestCase, $apiTestData){
-        print_r($dbTestCase);
-        print_r($apiTestData);
+        $dbTestTitle = $dbTestCase["title"] ?? "";
+        $dbTestDesc = $dbTestCase["desc"] ?? "";
+        echo "--------------------------------------------------------------------";
+        echo "Title: ".$dbTestTitle;
+        echo "--------------------------------------------------------------------";
+        echo "Desc: ".$dbTestDesc;
+        $dbTestApiTblColMapper = $dbTestCase["apiFieldToTblColumnMapper"] ?? [];
+        foreach($dbTestApiTblColMapper as $apiFieldToTblColumnMapper){
+            $apiField = $apiFieldToTblColumnMapper["apiField"] ?? "";
+            $tblColumnName = $apiFieldToTblColumnMapper["tblColumnName"] ?? "";
+            echo "ApiField: ".$apiField;
+            echo "TblColumnName: ".$tblColumnName;
+        }
+        $dbTestExpectedResult = $dbTestCase["expectedResult"] ?? "";
+        echo "ExpectedResult: ".$dbTestExpectedResult;
     }
     /**
      * Deletes all records from a given table.
