@@ -4,7 +4,7 @@
     private $apiUrl;
     private $apiMethod;
     public function __construct($apiUrl, $apiMethod){
-        $this->apiPrefix = $GLOBALS["API_PREFIX"];
+        $this->apiPrefix = $GLOBALS["API_DETAILS"]["prefix"];
         $this->apiUrl = $apiUrl;
         $this->apiMethod = $apiMethod;
     }

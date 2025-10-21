@@ -25,19 +25,28 @@ class CreateUserAccountTest {
     }
 
     private function runExecute($executeData){
+        $apiDetails = $GLOBALS["API_DETAILS"];
+        $createUser = $apiDetails["info"]["createUser"];
+        $apiUrl = $createUser["url"];
+        $apiMethod = $createUser["method"];
         // STEP #1: Execute all defined test cases
         $testCasesList = array_keys( $executeData );
+        $testCaseHelper = new TestCaseHelper($apiUrl, $apiMethod);
         foreach($testCasesList as $testCaseName){
             // API Test
             $apiTest = $executeData[$testCaseName]["api"];
-            $testCaseHelper = new TestCaseHelper();
             $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
 
             // Database Test
-            $databaseTest = $executeData[$testCaseName]["database"];
+            $databaseTest = [];
+            if(isset($executeData[$testCaseName]["database"])){
+                $databaseTest = $executeData[$testCaseName]["database"];
+            }
             $databaseHelper = new DatabaseHelper();
-            $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] );
+            $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
         }
+
+        // Generate Report to be set (By seeing countriesAndStatesAPI)
     }
 
 }
