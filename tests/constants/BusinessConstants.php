@@ -7,7 +7,7 @@ $DB_USER = 'root';
 $DB_PASSWORD = '';
 
 $TBL_USER_ACCOUNTS_INFO = 'user_accounts_info';
-$TBL_COL_CREATEDBY = 'app-auto-test';
+$TBL_COL_CREATEDBY = 'app-auto-'.microtime(true).'-'.bin2hex(random_bytes(4));
 
 $DB_CONN = new DatabaseConfig($DB_SERVERNAME,$DB_NAME,$DB_USER,$DB_PASSWORD);
 

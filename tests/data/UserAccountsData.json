@@ -17,6 +17,16 @@
                     "status":"Error",
                     "message":"Missing name, country, state, mobile number"
                 }
+            },
+            "database":{
+                "title": "Testing in Database that no empty data got inserted into table",
+                "desc": "",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "defaultValFields":["balance","createdOn","lastUpdatedOn"],
+                    "expectedResult":"CHECK_NO_EMPTY"
+                }]
+
             }
         },
         "TestCase#02":{
@@ -32,6 +42,24 @@
                     "status":"Error",
                     "message":"Missing name"
                 }
+            },
+            "database":{
+                "title": "Testing in database that no data is inserted (with No Name)",
+                "desc": "",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
+                        "apiField":"country",
+                        "columnName":"country"
+                    },{
+                        "apiField":"state",
+                        "columnName":"state"
+                    },{
+                        "apiField":"mobile",
+                        "columnName":"mobile"
+                    }],
+                    "expectedResult":"CHECK_NO_INSERT"
+                }]
             }
         },
         "TestCase#03":{
@@ -47,6 +75,24 @@
                     "status":"Error",
                     "message":"Missing country"
                 }
+            },
+            "database":{
+                "title": "Testing in database that no data is inserted (with No Country)",
+                "desc": "",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
+                        "apiField":"name",
+                        "columnName":"name"
+                    },{
+                        "apiField":"state",
+                        "columnName":"state"
+                    },{
+                        "apiField":"mobile",
+                        "columnName":"mobile"
+                    }],
+                    "expectedResult":"CHECK_NO_INSERT"
+                }]
             }
         },
         "TestCase#04":{
@@ -62,9 +108,60 @@
                     "status":"Error",
                     "message":"Missing state"
                 }
+            },
+            "database":{
+                "title": "Testing in database that no data is inserted (with No State)",
+                "desc": "",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
+                        "apiField":"name",
+                        "columnName":"name"
+                    },{
+                        "apiField":"country",
+                        "columnName":"country"
+                    },{
+                        "apiField":"mobile",
+                        "columnName":"mobile"
+                    }],
+                    "expectedResult":"CHECK_NO_INSERT"
+                }]
             }
         },
         "TestCase#05":{
+            "api":{
+                "title":"Testing to create an User Account with name, country and state",
+                "desc":"",
+                "data":{
+                    "name": "Test User 3", 
+                    "country": "India", 
+                    "state": "Telangana"
+                },
+                "expectedResult":{
+                    "status":"Error",
+                    "message":"Missing state"
+                }
+            },
+            "database":{
+                "title": "Testing in database that no data is inserted (with No Mobile)",
+                "desc": "",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
+                        "apiField":"name",
+                        "columnName":"name"
+                    },{
+                        "apiField":"country",
+                        "columnName":"country"
+                    },{
+                        "apiField":"state",
+                        "columnName":"state"
+                    }],
+                    "expectedResult":"CHECK_NO_INSERT"
+                }]
+            }
+        },
+        "TestCase#06":{
             "api":{
                 "title":"Testing to Create an User Account with a Valid User Data",
                 "desc": "",
@@ -82,23 +179,26 @@
             "database":{
                 "title":"Testing in Database Table that expected Fields got inserted or not",
                 "desc":"",
-                "apiFieldToTblColumnMapper":[{
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
                         "apiField":"name",
-                        "tblColumnName":"user_accounts_info.name"
+                        "columnName":"name"
                     },{
                         "apiField":"country",
-                        "tblColumnName":"user_accounts_info.country"
+                        "columnName":"country"
                     },{
                         "apiField":"state",
-                        "tblColumnName":"user_accounts_info.state"
+                        "columnName":"state"
                     },{
                         "apiField":"mobile",
-                        "tblColumnName":"user_accounts_info.mobile"
+                        "columnName":"mobile"
                     }],
-                "expectedResult":"CHECK_DATA_INSERT"
+                    "expectedResult":"CHECK_DATA_INSERT"
+                }]
             }
         },
-        "TestCase#06":{
+        "TestCase#07":{
             "api":{
                 "title":"Testing to create an User Account with duplicate mobile number",
                 "desc":"",
@@ -112,6 +212,27 @@
                     "status":"Error",
                     "message":"Duplicate entry '1234567890' for key 'user_accounts_info.uniq_mobile'"
                 }
+            },
+            "database":{
+                "title":"Testing in Database Table that no Duplicate Mobile number is allowed",
+                "desc":"",
+                "details":[{
+                    "tableName":"user_accounts_info",
+                    "apiFieldToTblColumnMapper":[{
+                        "apiField":"name",
+                        "columnName":"name"
+                    },{
+                        "apiField":"country",
+                        "columnName":"country"
+                    },{
+                        "apiField":"state",
+                        "columnName":"state"
+                    },{
+                        "apiField":"mobile",
+                        "columnName":"mobile"
+                    }],
+                    "expectedResult":"CHECK_NO_DUPLICATE"
+                }]
             }
         }
     }
