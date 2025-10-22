@@ -1,9 +1,44 @@
 <?php
 class DatabaseHelper {
-    private $database;
-    public function __construct() {
-        $this->database = $GLOBALS["DB_CONN"];
+    // NOTE: By Default, we will pass createdBy to all of the Tests.
+    public function checkNoEmpty($databaseTest, $apiTest){
+        // 1) Initially, checks in the Table - any empty data exists before (if exists, it gets deleted)
+        // 2) I will hit an API with empty Data (API Test Data)
+        // 3) Again, checks in the table, do we have any empty data inserted into it.
+        // 4) If empty field exists, test is Failed
+        $db = $GLOBALS["DB_CONN"];
+        $databaseTestTitle = $databaseTest["title"];
+        $databaseTestDesc =  $databaseTest["desc"];
+
     }
+
+    public function checkNoInsert($databaseTest, $apiTest){
+        // 1) I will hit an API with what I am passing to it with a "createdBy" (APITestData)
+        // 2) With same "createdBy", I will check in Database
+        // 3) If it not exists, then the test is PASSED
+    }
+
+    public function checkDataInsert($databaseTest, $apiTest){
+        // 1) I will hit an API with what I am passing to it with a "createdBy" (APITestData)
+        // 2) With same "createdBy", I will check in Database
+        // 3) If this exists, then test is Passed
+    }
+
+    public function checkDataUpdate($databaseTest, $apiTest){
+        // 1) I will get existing Data from Database based on uniqueId mentioned & "createdBy" (starts with test-auto-%)
+        // 2) I will hit an API with what I am passing to it (APITestData)
+        // 3) Using uniqueId, I will get the updated Dtaa and compares it with existing one.
+        // If they tally, the test is passed.
+    }
+
+    public function checkNoDuplicate($databaseTest, $apiTest){
+        // 1) I will get existing Data from Database based on UniqueId mentioned & "createdBy" (starts with test-auito-%)
+        // -------------------------------- CONFIRMS ONE COPY EXISTS ----------------------------------------------------
+        // 2) I will hit an API with what I am passing to it (APITestData)
+        // 3) Using UnqiueId, I will get the data again and confirms No Data got replicated from previous.
+        // 4) If they tally, the test is PASSED
+    }
+
     public function testInDatabase($dbTestCase, $apiTestData) {
         $db = $GLOBALS["DB_CONN"];
         $dbTestTitle = $dbTestCase["title"] ?? "";
@@ -11,6 +46,11 @@ class DatabaseHelper {
         $expectedResultType = strtoupper(trim($dbTestCase["expectedResult"] ?? ""));
         echo "Running DB Test: $dbTestTitle\n";
         switch ($expectedResultType) {
+            // ---------------------------
+            //    CHECK: EMPTY DATA
+            // ---------------------------
+            case "CHECK_NO_EMPTY":
+                // 
             // -------------------
             // CHECK: NO INSERTED DATA
             // -------------------

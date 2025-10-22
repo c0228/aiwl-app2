@@ -32,14 +32,30 @@ class CreateUserAccountTest {
         // STEP #1: Execute all defined test cases
         $testCasesList = array_keys( $executeData );
         $testCaseHelper = new TestCaseHelper($apiUrl, $apiMethod);
+        $databaseHelper = new DatabaseHelper();
         foreach($testCasesList as $testCaseName){
             // API Test
             $apiTest = $executeData[$testCaseName]["api"];
-            $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
+            $databaseTest = $executeData[$testCaseName]["database"] ?? [];
+
+            // Database Details:
+            if(count($databaseTest)>0){
+                $databaseTestDetails = $databaseTest["details"] ?? [];
+                foreach($databaseTestDetails as $dbDetails){
+                    switch($dbDetails["expectedResult"]){
+                        case "CHECK_NO_EMPTY":
+                            $databaseHelper->checkNoEmpty($databaseTest, $apiTest);
+                    }
+                    
+                }
+            }
+            
+           //  $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
 
             // Database Test
-            $databaseTest = $executeData[$testCaseName]["database"] ?? [];
-            $databaseHelper = new DatabaseHelper();
+            
+
+            
             $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
         }
 
