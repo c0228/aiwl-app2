@@ -40,10 +40,14 @@ class CreateUserAccountTest {
 
             // Database Details:
             if(count($databaseTest)>0){
+                $databaseTestTitle = $databaseTest["title"];
+                $databaseTestDesc =  $databaseTest["desc"];
                 $databaseTestDetails = $databaseTest["details"] ?? [];
                 foreach($databaseTestDetails as $dbDetails){
+                    $databaseTestTableName = $databaseTestDetails["tableName"] ?? "";
                     switch($dbDetails["expectedResult"]){
                         case "CHECK_NO_EMPTY":
+                            $defaultValFields = $databaseTestDetails["defaultValFields"] ?? [];
                             $databaseHelper->checkNoEmpty($databaseTest, $apiTest);
                     }
                     
@@ -56,7 +60,7 @@ class CreateUserAccountTest {
             
 
             
-            $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
+           // $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
         }
 
         // Generate Report to be set (By seeing countriesAndStatesAPI)

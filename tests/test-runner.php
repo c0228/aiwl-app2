@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__.'/utils/DatabaseConfig.php';
+require_once __DIR__.'/database/DatabaseConfig.php';
+require_once __DIR__ . '/database/DatabaseHelper.php';
+require_once __DIR__ . '/database/DatabaseQueryBuilder.php';
 require_once __DIR__.'/utils/ReportConfig.php';
 require_once __DIR__.'/constants/BusinessConstants.php';
 // require_once __DIR__ . '/helpers/TestHelper.php';
 require_once __DIR__ . '/helpers/TestCaseHelper.php';
-require_once __DIR__ . '/helpers/DatabaseHelper.php';
 require_once __DIR__ . '/helpers/DataLoader.php';
 
 require_once __DIR__.'/utils/utils.api.php';
@@ -12,6 +13,8 @@ require_once __DIR__.'/utils/utils.api.php';
 require_once __DIR__.'/apis/CountriesTest.php';
 require_once __DIR__.'/apis/StatesTest.php';
 require_once __DIR__.'/apis/CreateUserAccountTest.php';
+
+// GENERATE DATABASE SCHEMAS for Easy access and Dynamic Query Generation.
 
 /*
 $DB_SERVERNAME = 'localhost:3306';

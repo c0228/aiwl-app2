@@ -7,8 +7,7 @@ class DatabaseHelper {
         // 3) Again, checks in the table, do we have any empty data inserted into it.
         // 4) If empty field exists, test is Failed
         $db = $GLOBALS["DB_CONN"];
-        $databaseTestTitle = $databaseTest["title"];
-        $databaseTestDesc =  $databaseTest["desc"];
+        
 
     }
 
@@ -133,7 +132,8 @@ class DatabaseHelper {
         if (!empty($cleanData)) {
             foreach ($cleanData as $tableName) {
                 try {
-                    $affectedRows = $this->database->deleteFromTable($tableName, [
+                    $database = $GLOBALS["DB_CONN"];
+                    $affectedRows = $database->deleteFromTable($tableName, [
                         "createdBy" => $GLOBALS["TBL_COL_CREATEDBY"]
                     ]);
                     echo "DELETED ".$affectedRows." ROWS.";
