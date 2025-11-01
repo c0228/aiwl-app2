@@ -1,0 +1,107 @@
+{
+    "table_name": "profile_accounts_edu",
+    "database_name": "iwlab",
+    "columns": {
+        "courseId": {
+            "Type": "int",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "course": {
+            "Type": "varchar(65)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "schoolCollegeName": {
+            "Type": "varchar(65)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "location": {
+            "Type": "varchar(45)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "country": {
+            "Type": "varchar(30)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "yearPassFrom": {
+            "Type": "varchar(4)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "yearPassTo": {
+            "Type": "varchar(4)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "percentCGPA": {
+            "Type": "float",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "createdOn": {
+            "Type": "timestamp",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "lastUpdatedOn": {
+            "Type": "timestamp",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        }
+    },
+    "generated_at": "2025-11-01 03:55:02"
+}

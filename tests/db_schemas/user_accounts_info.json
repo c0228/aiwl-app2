@@ -1,0 +1,97 @@
+{
+    "table_name": "user_accounts_info",
+    "database_name": "iwlab",
+    "columns": {
+        "userId": {
+            "Type": "varchar(20)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "name": {
+            "Type": "varchar(45)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "country": {
+            "Type": "varchar(25)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "state": {
+            "Type": "varchar(45)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "mobile": {
+            "Type": "varchar(15)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "balance": {
+            "Type": "float",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "createdBy": {
+            "Type": "varchar(50)",
+            "Collation": "utf8mb4_0900_ai_ci",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "createdOn": {
+            "Type": "timestamp",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        },
+        "lastUpdatedOn": {
+            "Type": "timestamp",
+            "Collation": null,
+            "Null": "NO",
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP",
+            "Privileges": "select,insert,update,references",
+            "Comment": ""
+        }
+    },
+    "generated_at": "2025-11-01 03:55:02"
+}

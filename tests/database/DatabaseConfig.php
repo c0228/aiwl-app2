@@ -84,4 +84,65 @@ class DatabaseConfig
 
         return $affectedRows;
     }
+
+    /**
+     * Generate JSON schema files for all tables in the database.
+     *
+     * @param string $outputDir Directory to save JSON files
+     * @return void
+     */
+    function generateSchemaJSON($outputDir = "./schemas") {
+        $conn = $this->dbinteraction();
+
+        // Create output directory if not exists
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir, 0777, true);
+        }
+
+        $tables = $conn->query("SHOW TABLES");
+        if (!$tables) {
+            die("Error fetching tables: " . $conn->error);
+        }
+
+        while ($tableRow = $tables->fetch_array()) {
+            $tableName = $tableRow[0];
+
+            $columns = $conn->query("SHOW FULL COLUMNS FROM `$tableName`");
+            if (!$columns) {
+                error_log("Error fetching columns for $tableName: " . $conn->error);
+                continue;
+            }
+
+            $schema = [];
+            while ($col = $columns->fetch_assoc()) {
+                $schema[$col["Field"]] = [
+                    "Type" => $col["Type"],
+                    "Collation" => $col["Collation"],
+                    "Null" => $col["Null"],
+                    "Key" => $col["Key"],
+                    "Default" => $col["Default"],
+                    "Extra" => $col["Extra"],
+                    "Privileges" => $col["Privileges"],
+                    "Comment" => $col["Comment"]
+                ];
+            }
+
+            // Create JSON structure
+            $tableSchema = [
+                "table_name" => $tableName,
+                "database_name" => $this->databaseName,
+                "columns" => $schema,
+                "generated_at" => date("Y-m-d H:i:s")
+            ];
+
+            // Write JSON file
+            $jsonFile = rtrim($outputDir, "/") . "/" . $tableName . ".json";
+            file_put_contents($jsonFile, json_encode($tableSchema, JSON_PRETTY_PRINT));
+
+            echo "✅ Schema for table '$tableName' saved to $jsonFile\n";
+        }
+
+        $conn->close();
+    }
+
 }
