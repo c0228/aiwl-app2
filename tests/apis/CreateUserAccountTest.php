@@ -7,10 +7,21 @@
  *      a) Start executing each Test Case
  */
 class CreateUserAccountTest {
- 
+    private $databaseHelper;
+
+    public function __construct(){
+        $apiDetails = $GLOBALS["API_DETAILS"];
+        $createUser = $apiDetails["info"]["createUser"];
+        $apiUrl = $createUser["url"];
+        $apiMethod = $createUser["method"];
+
+        $this->databaseHelper = new DatabaseHelper($apiUrl, $apiMethod);
+    }
+
     public function testExecute() {
         // STEP #1: Load TestJSONFile
         $testData = DataLoader::load( $GLOBALS["USER_ACCOUNT_TESTDATAFILE"] );
+
         // STEP #2: Using TestJSONFile
         // a) Run init -> database -> clean
             $this->runInit($testData["init"]);
@@ -19,27 +30,23 @@ class CreateUserAccountTest {
     }
 
     private function runInit($initData){
-        // STEP #1: Clean Database
-        $databaseHelper = new DatabaseHelper();
-        $databaseHelper->cleanupTables($initData["database"]["clean"]);
+        // STEP #1: Clean Database 
+        $this->databaseHelper->cleanupTables($initData["database"]["clean"]);
     }
 
     private function runExecute($executeData){
-        $apiDetails = $GLOBALS["API_DETAILS"];
-        $createUser = $apiDetails["info"]["createUser"];
-        $apiUrl = $createUser["url"];
-        $apiMethod = $createUser["method"];
+        
         // STEP #1: Execute all defined test cases
         $testCasesList = array_keys( $executeData );
-        $testCaseHelper = new TestCaseHelper($apiUrl, $apiMethod);
-        $databaseHelper = new DatabaseHelper();
+       // $testCaseHelper = new TestCaseHelper($apiUrl, $apiMethod);
         foreach($testCasesList as $testCaseName){
+            $this->databaseHelper->executeApiAndDBTest($executeData[$testCaseName]);
             // API Test
-            $apiTest = $executeData[$testCaseName]["api"];
-            $databaseTest = $executeData[$testCaseName]["database"] ?? [];
+            // $apiTest = $executeData[$testCaseName]["api"];
+            // $databaseTest = $executeData[$testCaseName]["database"] ?? [];
 
             // Database Details:
-            if(count($databaseTest)>0){
+            /* if(count($databaseTest)>0){
                 $databaseTestTitle = $databaseTest["title"];
                 $databaseTestDesc =  $databaseTest["desc"];
                 $databaseTestDetails = $databaseTest["details"] ?? [];
@@ -52,7 +59,7 @@ class CreateUserAccountTest {
                     }
                     
                 }
-            }
+            } */
             
            //  $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
 

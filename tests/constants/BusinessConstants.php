@@ -33,6 +33,8 @@ $API_DETAILS = [
 // SECTION #3: Load Test Data Files
 $USER_ACCOUNT_TESTDATAFILE = __DIR__.'/../data/UserAccountsData.json';
 
+$DB_SCHEMAS_PATH = __DIR__.'/../db_schemas';
+
 // SECTION #4: GENERATE REPORTS
 $GEN_REPORT_FILE = 'new-gen-report.html';
 $GEN_REPORT_OBJ = new GenerateReport($GEN_REPORT_FILE);

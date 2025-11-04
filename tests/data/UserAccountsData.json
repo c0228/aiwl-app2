@@ -26,7 +26,6 @@
                     "defaultValFields":["balance","createdOn","lastUpdatedOn"],
                     "expectedResult":"CHECK_NO_EMPTY"
                 }]
-
             }
         },
         "TestCase#02":{

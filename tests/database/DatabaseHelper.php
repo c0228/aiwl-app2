@@ -1,12 +1,59 @@
 <?php
 class DatabaseHelper {
+    private $apiPrefix;
+    private $apiUrl;
+    private $apiMethod;
+    public function __construct($apiUrl, $apiMethod){
+        $this->apiPrefix = $GLOBALS["API_DETAILS"]["prefix"];
+        $this->apiUrl = $apiUrl;
+        $this->apiMethod = $apiMethod;
+    }
+
+    // executeApiAndDBTest: Main Function that executes API and DB
+    public function executeApiAndDBTest($apiAndDbTestCase){
+        $apiData = $apiAndDbTestCase["api"];
+        $dbData = $apiAndDbTestCase["database"];
+        $testDetailsIndex = 0;
+        foreach($dbData["details"] as $testDetails){
+            switch( $testDetails["expectedResult"] ){
+                case "CHECK_NO_EMPTY": {
+                    $this->checkNoEmpty( $apiAndDbTestCase, $testDetailsIndex );
+                }
+            }
+            $testDetailsIndex++;
+        }
+    }
+
     // NOTE: By Default, we will pass createdBy to all of the Tests.
-    public function checkNoEmpty($databaseTest, $apiTest){
-        // 1) Initially, checks in the Table - any empty data exists before (if exists, it gets deleted)
+    public function checkNoEmpty( $apiAndDbTestCase, $testDetailsIndex ){
+        // 1) checks in the table, do we have any empty data inserted into it.
         // 2) I will hit an API with empty Data (API Test Data)
         // 3) Again, checks in the table, do we have any empty data inserted into it.
         // 4) If empty field exists, test is Failed
-        $db = $GLOBALS["DB_CONN"];
+        echo "checkNoEmpty";
+        print_r( $apiAndDbTestCase );
+        // Print All Details for API and Database
+        
+        // 1) checks in the table, do we have any empty data inserted into it.
+        $dbTitle = $apiAndDbTestCase["database"]["title"];
+        $dbDesc = $apiAndDbTestCase["database"]["desc"];
+        $dbTableName = $apiAndDbTestCase["database"]["details"][$testDetailsIndex]["tableName"];
+        $dbExpectedResult = $apiAndDbTestCase["database"]["details"][$testDetailsIndex]["expectedResult"];
+
+        // Get All Data from Table Schemas File
+        $databaseConfig = $GLOBALS["DB_CONN"];
+        $databaseQueryBuilder = new DatabaseQueryBuilder();
+        $conditions = $databaseQueryBuilder->buildEmptyDataCheckQuery($dbTableName);
+        $status = $databaseConfig->validateDb($dbTableName, $conditions, []);
+        echo "IS_EMPTY: ".$status;
+        // 2) I will hit an API with empty Data (API Test Data)
+        $testCaseHelper = new TestCaseHelper($this->apiUrl, $this->apiMethod);
+        $result = $testCaseHelper->runAPI($apiAndDbTestCase["api"]);
+        print_r($result);
+        
+
+        // GET EXPECTED RESULTS in "database"->"details"
+        
         
 
     }
@@ -133,10 +180,10 @@ class DatabaseHelper {
             foreach ($cleanData as $tableName) {
                 try {
                     $database = $GLOBALS["DB_CONN"];
-                    $affectedRows = $database->deleteFromTable($tableName, [
+                    $result = $database->deleteFromTable($tableName, [
                         "createdBy" => $GLOBALS["TBL_COL_CREATEDBY"]
                     ]);
-                    echo "DELETED ".$affectedRows." ROWS.";
+                    echo "DELETED ".$result["affectedRows"]." ROWS.";
                 } catch (Exception $e) {
                     echo "[ERROR] Failed to clean table '$tableName': " . $e->getMessage() . "\n";
                     return false;

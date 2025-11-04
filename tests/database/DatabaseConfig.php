@@ -1,8 +1,6 @@
 <?php
 
-class DatabaseConfig
-{
-    private $logger;
+class DatabaseConfig {
 	private $serverName;
 	private $databaseName;
 	private $userName;
@@ -22,36 +20,29 @@ class DatabaseConfig
     }
 
     function validateDb($table, $conditions, $expected) {
-        $conn = $this->dbinteraction();
+        $databaseQueryBuilder = new DatabaseQueryBuilder();
+        $sql = $databaseQueryBuilder->selectQuery($table, $conditions);
+        // Reuse getJSONData() instead of doing connection/query manually
+        $jsonData = $this->getJSONData($sql);
+        $rows = json_decode($jsonData, true); // convert JSON to array
+        // If no data returned
+        if (empty($rows)) { return false; }
+        // Loop through all rows to find a match by key-value pairs
+        foreach ($rows as $row) {
+            $match = true; // assume this row matches until proven otherwise
 
-        // Build WHERE clause with proper escaping
-        $where = [];
-        foreach ($conditions as $col => $val) {
-            $val = $val ?? ""; // convert null to empty string
-            $where[] = $col . " = '" . $conn->real_escape_string($val) . "'";
-        }
-        $sql = "SELECT * FROM $table WHERE " . implode(' AND ', $where);
-
-        $result = $conn->query($sql);
-        if (!$result) {
-            $conn->close();
-            die("Invalid query: " . $conn->error);
-        }
-
-        $row = $result->fetch_assoc();
-        $conn->close();
-
-        if (!$row) {
-            return false; // No row matched
-        }
-
-        // Check if all expected key-value pairs match
-        foreach ($expected as $key => $value) {
-            if (!array_key_exists($key, $row) || $row[$key] != $value) {
-                return false;
+            foreach ($expected as $key => $value) {
+                // if the key doesn’t exist or value mismatch → mark false
+                if (!array_key_exists($key, $row) || $row[$key] != $value) {
+                    $match = false;
+                    break;
+                }
             }
+            // if all expected key-value pairs matched, we’re done 
+            if ($match) { return true; }
         }
-        return true;
+        // none of the rows matched the expected data
+        return false;
     }
 
         /**
@@ -62,27 +53,12 @@ class DatabaseConfig
      * @return bool True if delete successful, false otherwise
      */
     function deleteFromTable($table, $conditions) {
-        $conn = $this->dbinteraction();
-
-        // Build WHERE clause safely
-        $where = [];
-        foreach ($conditions as $col => $val) {
-            $where[] = $col . " = '" . $conn->real_escape_string($val) . "'";
-        }
-
-        $sql = "DELETE FROM $table WHERE " . implode(' AND ', $where);
-
-        $result = $conn->query($sql);
-        if ($result === false) {
-            error_log("Database delete failed: " . $conn->error);
-            $conn->close();
-            return false;
-        }
-
-        $affectedRows = $conn->affected_rows;
-        $conn->close();
-
-        return $affectedRows;
+        $conditionsStr = implode(' AND ', array_map(
+            fn($key, $value) => "$key = '" . addslashes($value) . "'",
+            array_keys($conditions), $conditions ));
+        $databaseQueryBuilder = new DatabaseQueryBuilder();
+        $sql = $databaseQueryBuilder->deleteQuery($table, $conditionsStr);
+        return $this->deleteData($sql);
     }
 
     /**
@@ -114,7 +90,9 @@ class DatabaseConfig
             }
 
             $schema = [];
+            $columnNames = [];
             while ($col = $columns->fetch_assoc()) {
+                $columnNames[] = $col["Field"];
                 $schema[$col["Field"]] = [
                     "Type" => $col["Type"],
                     "Collation" => $col["Collation"],
@@ -131,7 +109,8 @@ class DatabaseConfig
             $tableSchema = [
                 "table_name" => $tableName,
                 "database_name" => $this->databaseName,
-                "columns" => $schema,
+                "columns" => $columnNames,
+                "columnDetails" => $schema,
                 "generated_at" => date("Y-m-d H:i:s")
             ];
 
@@ -145,4 +124,47 @@ class DatabaseConfig
         $conn->close();
     }
 
+    function getJSONData($sql) {
+        $db=new DatabaseConfig($this->serverName,$this->databaseName,$this->userName,$this->password);
+        $conn = $db->dbinteraction();
+        $result = mysqli_query($conn, $sql); 
+        $json="";
+            if (!$result) {   
+                 die("Invalid query: " . mysqli_error($conn)); 
+           //      $this->logger->error("Query(Status-Invalid) : ".$sql); 
+            }
+            else {
+                $rows= array();
+        
+                while($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                 }
+                 
+                $json = json_encode($rows);
+            }
+         
+        mysqli_free_result($result); 
+        $conn->close();
+        return $json;
+    }
+
+    function addupdateData($sql) {
+       $status="Error";
+       $db=new DatabaseConfig($this->serverName,$this->databaseName,$this->userName,$this->password);
+       $conn = $db->dbinteraction();
+       if ($conn->multi_query($sql) === true) { $status="Success";}
+       $affectedRows = $conn->affected_rows;
+       $conn->close();
+       return ["status"=>$status, "affectedRows" =>$affectedRows];
+    }
+    
+	function deleteData($sql) {
+		$status='Error';
+		$db=new DatabaseConfig($this->serverName,$this->databaseName,$this->userName,$this->password);
+		$conn = $db->dbinteraction();
+		if ($conn->query($sql) === TRUE) { $status='Success'; } 
+        $affectedRows = $conn->affected_rows;
+        $conn->close();
+	    return ["status"=>$status, "affectedRows" =>$affectedRows];
+	}
 }
