@@ -14,75 +14,31 @@ class DatabaseHelper {
         $apiData = $apiAndDbTestCase["api"];
         $dbData = $apiAndDbTestCase["database"];
         $testDetailsIndex = 0;
+        $checkDataInsertValidation  = new CheckDataInsertValidation($this->apiUrl, $this->apiMethod);
+        $checkDataUpdateValidation  = new CheckDataUpdateValidation($this->apiUrl, $this->apiMethod);
+        $checkNoDuplicateValidation  = new CheckNoDuplicateValidation($this->apiUrl, $this->apiMethod);
+        $checkNoEmptyValidation  = new CheckNoEmptyValidation($this->apiUrl, $this->apiMethod);
+        $checkNoInsertValidation  = new CheckNoInsertValidation($this->apiUrl, $this->apiMethod);
         foreach($dbData["details"] as $testDetails){
             switch( $testDetails["expectedResult"] ){
+                case "CHECK_DATA_INSERT": {
+                    $checkDataInsertValidation->validate( $apiAndDbTestCase, $testDetailsIndex );
+                }
+                case "CHECK_DATA_UPDATE": {
+                    $checkDataUpdateValidation->validate( $apiAndDbTestCase, $testDetailsIndex );
+                }
                 case "CHECK_NO_EMPTY": {
-                    $this->checkNoEmpty( $apiAndDbTestCase, $testDetailsIndex );
+                    $checkNoDuplicateValidation->validate( $apiAndDbTestCase, $testDetailsIndex );
+                }
+                case "CHECK_NO_DUPLICATE": {
+                    $checkNoEmptyValidation->validate( $apiAndDbTestCase, $testDetailsIndex );
+                }
+                case "CHECK_NO_INSERT": {
+                    $checkNoInsertValidation->validate( $apiAndDbTestCase, $testDetailsIndex );
                 }
             }
             $testDetailsIndex++;
         }
-    }
-
-    // NOTE: By Default, we will pass createdBy to all of the Tests.
-    public function checkNoEmpty( $apiAndDbTestCase, $testDetailsIndex ){
-        // 1) checks in the table, do we have any empty data inserted into it.
-        // 2) I will hit an API with empty Data (API Test Data)
-        // 3) Again, checks in the table, do we have any empty data inserted into it.
-        // 4) If empty field exists, test is Failed
-        echo "checkNoEmpty";
-        print_r( $apiAndDbTestCase );
-        // Print All Details for API and Database
-        
-        // 1) checks in the table, do we have any empty data inserted into it.
-        $dbTitle = $apiAndDbTestCase["database"]["title"];
-        $dbDesc = $apiAndDbTestCase["database"]["desc"];
-        $dbTableName = $apiAndDbTestCase["database"]["details"][$testDetailsIndex]["tableName"];
-        $dbExpectedResult = $apiAndDbTestCase["database"]["details"][$testDetailsIndex]["expectedResult"];
-
-        // Get All Data from Table Schemas File
-        $databaseConfig = $GLOBALS["DB_CONN"];
-        $databaseQueryBuilder = new DatabaseQueryBuilder();
-        $conditions = $databaseQueryBuilder->buildEmptyDataCheckQuery($dbTableName);
-        $status = $databaseConfig->validateDb($dbTableName, $conditions, []);
-        echo "IS_EMPTY: ".$status;
-        // 2) I will hit an API with empty Data (API Test Data)
-        $testCaseHelper = new TestCaseHelper($this->apiUrl, $this->apiMethod);
-        $result = $testCaseHelper->runAPI($apiAndDbTestCase["api"]);
-        print_r($result);
-        
-
-        // GET EXPECTED RESULTS in "database"->"details"
-        
-        
-
-    }
-
-    public function checkNoInsert($databaseTest, $apiTest){
-        // 1) I will hit an API with what I am passing to it with a "createdBy" (APITestData)
-        // 2) With same "createdBy", I will check in Database
-        // 3) If it not exists, then the test is PASSED
-    }
-
-    public function checkDataInsert($databaseTest, $apiTest){
-        // 1) I will hit an API with what I am passing to it with a "createdBy" (APITestData)
-        // 2) With same "createdBy", I will check in Database
-        // 3) If this exists, then test is Passed
-    }
-
-    public function checkDataUpdate($databaseTest, $apiTest){
-        // 1) I will get existing Data from Database based on uniqueId mentioned & "createdBy" (starts with test-auto-%)
-        // 2) I will hit an API with what I am passing to it (APITestData)
-        // 3) Using uniqueId, I will get the updated Dtaa and compares it with existing one.
-        // If they tally, the test is passed.
-    }
-
-    public function checkNoDuplicate($databaseTest, $apiTest){
-        // 1) I will get existing Data from Database based on UniqueId mentioned & "createdBy" (starts with test-auito-%)
-        // -------------------------------- CONFIRMS ONE COPY EXISTS ----------------------------------------------------
-        // 2) I will hit an API with what I am passing to it (APITestData)
-        // 3) Using UnqiueId, I will get the data again and confirms No Data got replicated from previous.
-        // 4) If they tally, the test is PASSED
     }
 
     public function testInDatabase($dbTestCase, $apiTestData) {
