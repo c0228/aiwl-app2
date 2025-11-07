@@ -25,6 +25,7 @@ class CheckNoEmptyValidation {
         // 4) If empty field exists, test is Failed
         
         // 1) checks in the table, do we have any empty data inserted into it.
+        $apiTitle = $apiAndDbTestCase["api"]["title"];
         $dbTitle = $apiAndDbTestCase["database"]["title"];
         $dbDesc = $apiAndDbTestCase["database"]["desc"];
         $dbTableName = $apiAndDbTestCase["database"]["details"][$testDetailsIndex]["tableName"];
@@ -42,7 +43,49 @@ class CheckNoEmptyValidation {
         // Again check, does anything inserted with Empty Fields
         $status = $this->isRowHasEmptyFields($dbTableName);
         echo "IS_EMPTY: ".$status;
+
+        $logStepsReport = [
+            ["step"=>"",
+            "status"=>""]
+        ]; // logStepsReport says the Steps that we followed in acheiving the Result
         
+        $genReport = $GLOBALS["GEN_REPORT_OBJ"];
+        $genReport->apiTestTitle([
+            "title" => "Create a New User Account",
+            "url" => $this->apiUrl,
+            "method" => $this->apiMethod,
+            "testCases" => [
+                [
+                    "api" => $result,
+                    "database" => [
+                        "before" => [
+                            ["action" => "", // description of query why it is executed
+                             "query" => "",
+                             "actualResult" => "",
+                             "expectedResult" => "",
+                             "status" => ""],
+                            ["action" => "", // description of query why it is executed
+                             "query" => "",
+                             "actualResult" => "",
+                             "expectedResult" => "",
+                             "status" => ""]
+                        ],
+                        "after" => [
+                            ["action" => "", // description of query why it is executed
+                             "query" => "",
+                             "actualResult" => "",
+                             "expectedResult" => "",
+                             "status" => ""]
+                        ]
+                    ],
+                    "step-logs" => [
+                        ["step" => "",
+                        "status" => ""]
+                    ],
+                    "comments" => ""
+                ]
+            ]
+        ]);
 
         // GET EXPECTED RESULTS in "database"->"details"
     }

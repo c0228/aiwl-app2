@@ -3,7 +3,10 @@
 require_once __DIR__.'/database/DatabaseConfig.php';
 require_once __DIR__ . '/database/DatabaseHelper.php';
 require_once __DIR__ . '/database/DatabaseQueryBuilder.php';
-require_once __DIR__.'/utils/ReportConfig.php';
+// Reporting
+require_once __DIR__.'/report-engine/ReportConfig.php';
+require_once __DIR__.'/report-engine/DbTestReportConfig.php';
+//
 require_once __DIR__.'/constants/BusinessConstants.php';
 // require_once __DIR__ . '/helpers/TestHelper.php';
 require_once __DIR__ . '/helpers/TestCaseHelper.php';

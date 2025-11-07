@@ -20,31 +20,56 @@
      if (!empty($data["testCases"]) && is_array($data["testCases"])) {
         
         foreach ($data["testCases"] as $tc) {
+            $apiTc = $tc["api"];
+            $dbTc = $tc["database"];
              $index = $this->testCaseIndex;
-             $statusBgColor = ($tc["status"]=='PASSED')?'bg-success':'bg-danger';
+             $statusBgColor = ($apiTc["status"]=='PASSED')?'bg-success':'bg-danger';
+
+             $stepLogsHtml = "";
+             if (!empty($tc["step-logs"]) && is_array($tc["step-logs"])) {
+                foreach ($tc["step-logs"] as $log) {
+                    $stepLogsHtml .= '<div> ' 
+                        .htmlspecialchars($log["step"]) . ' - <b>' 
+                        .htmlspecialchars($log["status"]) . '</b></div>';
+                }
+             } else {
+                    $stepLogsHtml = "<div>No step logs available.</div>";
+             }
+             //  Database Test Section (display only if $dbTc exists)
+             $dbTestReportConfig = new DbTestReportConfig();
+             $dbTestSection = $dbTestReportConfig->generate($dbTc);
+
              $testCaseData .= '<div class="list-group mb-2">
                 <div id="test-case-'.$index.'" class="list-group-item header" data-bs-toggle="collapse" 
                     data-bs-target="#test-case-'.$index.'-toggle" 
                     onClick="javascript:toggleTestCase('.$index.')">
-                    <div><b>TEST CASE #'.$index.': '.$tc["title"].'</b>
+                    <div><b>TEST CASE #'.$index.': '.$apiTc["title"].'</b>
                     <span class="float-end">
-                    <span class="badge '.$statusBgColor.'"><b>'.$tc["status"].'</b></span>
+                    <span class="badge '.$statusBgColor.'"><b>'.$apiTc["status"].'</b></span>
                     <i class="fa fa-angle-double-down" aria-hidden="true" style="font-size:19px;"></i>
                     </span>
                     </div>
                 </div>
                 <div id="test-case-'.$index.'-toggle" class="list-group-item collapse">
                     <div class="row">
-                        <div class="col-md-12 mt-2"><b>Description:</b> '.$tc["description"].'</div>
-                        <div class="col-md-12 mt-2"><b>URL:</b> <code class="code"><b>'.$tc["url"].'</b></code></div>
-                        <div class="col-md-12 mt-2"><b>Method:</b> <span class="badge bg-success">'.$tc["method"].'</span> </div>
+                        <div class="col-md-12 mt-2"><b>Description:</b> '.$apiTc["description"].'</div>
+                    </div>
+
+                    <div style="border:1px dashed #000; padding:15px;margin-top:15px;">
+                    <!-- -->
+                    <div align="center" class="row">
+                        <div class="col-md-12 mt-2"><h3><b>API TEST RESULTS</b></h3></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2"><b>URL:</b> <code class="code"><b>'.$apiTc["url"].'</b></code></div>
+                        <div class="col-md-12 mt-2"><b>Method:</b> <span class="badge bg-success">'.$apiTc["method"].'</span> </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mt-2">
                             <div><b>Request Body:</b></div>
                             <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["inputRequestBody"].'
+                                    '.$apiTc["inputRequestBody"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
@@ -52,7 +77,7 @@
                             <div><b>API Response:</b></div>
                             <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["apiResponse"].'
+                                    '.$apiTc["apiResponse"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
@@ -60,17 +85,20 @@
                             <div><b>Expected Response:</b></div>
                             <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["expectedResult"].'
+                                    '.$apiTc["expectedResult"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div><!--/.col-md-4 -->
                     </div><!--/.row -->
-                    <div class="row">
+                    <!-- -->
+                    </div>'
+                    .$dbTestSection.
+                    '<div class="row">
                         <div class="col-md-6 mt-2">
                             <div><b>Step Logs:</b></div>
                             <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["step-logs"].'
+                                    '.$stepLogsHtml.'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div>
@@ -78,11 +106,12 @@
                             <div><b>Comments:</b></div>
                             <div class="card code">
                                 <div class="card-body">
-                                    '.$tc["comments"].'
+                                    '.$apiTc["comments"].'
                                 </div><!--/.card-body -->
                             </div><!--/.card -->
                         </div>
                     </div><!--/.row -->
+                    
                 </div><!--/.list-group-item -->
             </div><!--/.list-group -->';
             $this->testCaseIndex++;
@@ -137,56 +166,4 @@
      file_put_contents($this->reportFile, $html);
     }
  }
-/*
- $data1 = array();
- $data1["title"] = "TEST Title 1";
- $data1["url"] = "TEST URL 1";
- $data1["method"] = "TEST Method 1";
- $data = array();
- $data[0] = $data1;
- $generateReport = new GenerateReport("new-gen-report.html");
- $generateReport->apiTestTitle([
-    "title" => "TEST Title 1",
-    "url" => "TEST URL 1",
-    "method" => "TEST Method 1",
-    "testCases" =>[
-        [
-            "title"=>"",
-            "description"=>"",
-            "url"=>"",
-            "method"=>"",
-            "inputRequestBody"=>"",
-            "apiResponse"=>"",
-            "testResult"=>"",
-            "comments"=>""
-        ],
-        [
-            "title"=>"",
-            "description"=>"",
-            "url"=>"",
-            "method"=>"",
-            "inputRequestBody"=>"",
-            "apiResponse"=>"",
-            "testResult"=>"",
-            "comments"=>""
-        ]
-    ]
-]);
-$generateReport->apiTestTitle([
-    "title" => "TEST Title 2",
-    "url" => "TEST URL 2",
-    "method" => "TEST Method 2",
-    "testCases" =>[
-        [
-            "title"=>"",
-            "description"=>"",
-            "url"=>"",
-            "method"=>"",
-            "inputRequestBody"=>"",
-            "apiResponse"=>"",
-            "testResult"=>"",
-            "comments"=>""
-        ]
-    ]
-]); */
 ?>

@@ -20,6 +20,7 @@ class StatesTest {
         $apiMethod = $apiInfo["method"];
 
         // STEP #2: Execute API for each Country and test the Responses
+        $testResults = [];
         foreach ($apiUrls as $url) {
             $fullUrl = $apiPrefix . $url;
             $apiResponse = callApi($fullUrl, $apiMethod);
@@ -27,19 +28,22 @@ class StatesTest {
             $apiStatus = (is_array($apiResponse) && count($apiResponse) > 0)? 'PASSED': 'FAILED';
             // Store response and result
             $apiResponses[$url] = $apiResponse;
-            $testResults[] = [
-                "title" => "Test States List for Country from URL: {$url}",
-                "description" => "Testing whether the API returns a valid list of states for the given country.",
-                "url" => $fullUrl,
-                "method" => $apiMethod,
-                "inputRequestBody" => "-",
-                "apiResponse" => json_encode($apiResponse),
-                "expectedResult" => "",
-                "testResult" => "",
-                "status" => $apiStatus,
-                "step-logs" => "",
+            $testCaseResults = [
+                "api" => [
+                            "title" => "Test States List for Country from URL: {$url}",
+                            "description" => "Testing whether the API returns a valid list of states for the given country.",
+                            "url" => $fullUrl,
+                            "method" => $apiMethod,
+                            "inputRequestBody" => "-",
+                            "apiResponse" => json_encode($apiResponse),
+                            "expectedResult" => "",
+                            "testResult" => "",
+                            "status" => $apiStatus,
+                        ],
+                "step-logs" => [],
                 "comments" => ""
             ];
+            $testResults[] = $testCaseResults;
         }
 
         // STEP #3: Compile results into HTML report

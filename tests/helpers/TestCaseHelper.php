@@ -36,7 +36,8 @@
             "expectedResult" => json_encode([
                 "status" => $expectedResultStatus,
                 "message" => $expectedResultMessage
-            ])     
+            ]),
+            "comments" => ""
         ];
         return $result;
     }

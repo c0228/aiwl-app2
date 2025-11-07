@@ -35,39 +35,11 @@ class CreateUserAccountTest {
     }
 
     private function runExecute($executeData){
-        
         // STEP #1: Execute all defined test cases
         $testCasesList = array_keys( $executeData );
        // $testCaseHelper = new TestCaseHelper($apiUrl, $apiMethod);
         foreach($testCasesList as $testCaseName){
             $this->databaseHelper->executeApiAndDBTest($executeData[$testCaseName]);
-            // API Test
-            // $apiTest = $executeData[$testCaseName]["api"];
-            // $databaseTest = $executeData[$testCaseName]["database"] ?? [];
-
-            // Database Details:
-            /* if(count($databaseTest)>0){
-                $databaseTestTitle = $databaseTest["title"];
-                $databaseTestDesc =  $databaseTest["desc"];
-                $databaseTestDetails = $databaseTest["details"] ?? [];
-                foreach($databaseTestDetails as $dbDetails){
-                    $databaseTestTableName = $databaseTestDetails["tableName"] ?? "";
-                    switch($dbDetails["expectedResult"]){
-                        case "CHECK_NO_EMPTY":
-                            $defaultValFields = $databaseTestDetails["defaultValFields"] ?? [];
-                            $databaseHelper->checkNoEmpty($databaseTest, $apiTest);
-                    }
-                    
-                }
-            } */
-            
-           //  $apiTestResponse = $testCaseHelper->runAPI( $apiTest );
-
-            // Database Test
-            
-
-            
-           // $databaseHelper->testInDatabase($databaseTest, $apiTest["data"] ); // Need to be Write
         }
 
         // Generate Report to be set (By seeing countriesAndStatesAPI)

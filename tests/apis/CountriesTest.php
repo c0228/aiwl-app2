@@ -25,7 +25,7 @@ class CountriesTest {
             "url" => $apiUrl,
             "method" => $apiMethod,
             "testCases" => [
-                [
+                ["api" =>[
                     "title" => "Test the response is providing Countries List or not",
                     "description" => "We are hitting API and testing whether the response provides the list of countries.",
                     "url" => $apiPrefix . $apiUrl,
@@ -34,9 +34,9 @@ class CountriesTest {
                     "apiResponse" => json_encode($apiResponse),
                     "expectedResult" => "",
                     "testResult" => "",
-                    "status" => $apiStatus,
-                    "step-logs" => "",
-                    "comments" => ""
+                    "status" => $apiStatus],
+                 "step-logs" => [],
+                 "comments" => ""
                 ]
             ]
         ]);
